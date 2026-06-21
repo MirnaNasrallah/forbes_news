@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased font-sans;
+  }
+
+  body {
+    @apply bg-forbes-bg text-forbes-dark;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-content mx-auto px-4 sm:px-6;
+  }
+
+  .category-label {
+    @apply text-caption font-semibold uppercase tracking-widest text-forbes-red;
+  }
+
+  .section-divider {
+    @apply border-t-2 border-forbes-dark mb-3;
+  }
+
+  .article-body {
+    @apply text-body-md text-forbes-dark leading-relaxed;
+  }
+
+  .article-body p {
+    @apply mb-5 text-body-lg leading-[1.75];
+  }
+
+  .article-body h2 {
+    @apply text-h3 font-bold mt-8 mb-4;
+  }
+
+  .article-body h3 {
+    @apply text-h4 font-bold mt-6 mb-3;
+  }
+
+  .article-body blockquote {
+    @apply border-l-4 border-forbes-red pl-4 italic text-forbes-dark/70 my-6;
+  }
+
+  .card-image {
+    @apply rounded-[4px] overflow-hidden;
+  }
+
+  .page-background {
+    @apply fixed inset-0 z-0 bg-forbes-bg bg-no-repeat pointer-events-none;
+    background-image: url('/images/hero-cover.png');
+    background-size: 100% 100%;
+    background-position: top center;
+  }
+
+  .home-card {
+    @apply max-w-[1724px] mx-4 sm:mx-6 lg:mx-auto mt-16 lg:mt-[118px] mb-10 rounded-[10px] bg-forbes-bg overflow-hidden;
+    box-shadow:
+      0px -64px 142px 0px #00000038,
+      0px -258px 250px 0px #00000030,
+      0px -580px 250px 0px #0000001c,
+      0px -1032px 250px 0px #00000008,
+      0px -1612px 250px 0px #00000000;
+  }
+
+  .home-content {
+    @apply max-w-[1320px] mx-auto px-4 sm:px-6;
+  }
+
+  .meta-pill {
+    @apply inline-flex items-center justify-center w-[120px] h-[37px] px-[10px] border border-forbes-dark rounded-lg text-caption font-semibold uppercase text-forbes-dark shrink-0;
+  }
+
+  .live-title {
+    @apply text-[36px] font-medium leading-[49px] text-forbes-dark;
+  }
+
+  .section-heading {
+    @apply text-[36px] font-medium leading-[43.2px] uppercase text-forbes-dark;
+  }
+
+  .card-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    max-height: 2.7em;
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

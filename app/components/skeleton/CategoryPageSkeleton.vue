@@ -1,0 +1,20 @@
+<script setup lang="ts">
+import ArticleCardSkeleton from './ArticleCardSkeleton.vue'
+import SkeletonBox from './SkeletonBox.vue'
+</script>
+
+<template>
+  <div class="home-content py-8">
+    <div class="mb-10">
+      <SkeletonBox class="h-[43px] w-72 mb-4" />
+      <div class="border-t border-forbes-dark" />
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10 justify-items-center xl:justify-items-start">
+      <ArticleCardSkeleton
+        v-for="index in 6"
+        :key="index"
+      />
+    </div>
+  </div>
+</template>

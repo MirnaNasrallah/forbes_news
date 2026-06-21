@@ -1,0 +1,58 @@
+<script setup lang="ts">
+import type { HomepagePayload, SectionPreview } from '#types/article'
+import HomepageSkeleton from '~/components/skeleton/HomepageSkeleton.vue'
+
+definePageMeta({ layout: 'home' })
+
+const { data, pending, error } = await useAsyncData<HomepagePayload>(
+  'homepage',
+  () => $fetch('/api/homepage'),
+)
+
+if (error.value) {
+  throw createError({ statusCode: 500, message: 'Failed to load homepage' })
+}
+
+function getSection(category: SectionPreview['category']) {
+  return data.value?.sections.find((s) => s.category === category)
+}
+
+useSeoMeta({
+  title: 'Forbes Middle East – Business, Technology, World News',
+  description:
+    'Forbes Middle East delivers authoritative business, technology, culture, and world news coverage across the Middle East and beyond.',
+})
+</script>
+
+<template>
+  <HomepageSkeleton v-if="pending" />
+
+  <div v-else-if="data">
+    <TheHeader />
+
+    <div class="py-6 sm:py-8">
+      <TickerStrip :articles="data.ticker" />
+
+      <div class="home-content">
+      <HeroArticle :article="data.hero" />
+
+      <WorldNewsSection
+        v-if="getSection('world-news')"
+        :articles="getSection('world-news')!.articles"
+      />
+
+      <TechnologySection
+        v-if="getSection('technology')"
+        :articles="getSection('technology')!.articles"
+      />
+
+      <PodcastSection
+        v-if="getSection('podcast')"
+        :articles="getSection('podcast')!.articles"
+      />
+      </div>
+    </div>
+
+    <TheFooter />
+  </div>
+</template>
