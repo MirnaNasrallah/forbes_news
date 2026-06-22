@@ -7,11 +7,13 @@ definePageMeta({ key: (route) => route.fullPath })
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 
-const { data, pending, error } = await useAsyncData<ArticlePayload>(
+const { data, pending, error, status } = await useAsyncData<ArticlePayload>(
   () => `article-${slug.value}`,
   () => $fetch(`/api/articles/${slug.value}`),
   { watch: [slug] },
 )
+
+const showSkeleton = usePageLoading(pending, data, status)
 
 if (error.value) {
   const statusCode = error.value.statusCode ?? 500
@@ -22,7 +24,7 @@ if (error.value) {
   })
 }
 
-if (!data.value) {
+if (!pending.value && !data.value) {
   throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })
 }
 
@@ -43,7 +45,7 @@ useArticleJsonLd(() => data.value?.article)
 </script>
 
 <template>
-  <ArticlePageSkeleton v-if="pending" />
+  <ArticlePageSkeleton v-if="showSkeleton" />
 
   <div v-else-if="data" class="home-content pb-10">
     <div class="article-column">

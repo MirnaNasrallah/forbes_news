@@ -5,15 +5,24 @@ import HomepageSkeleton from '~/app/components/ui/skeleton/HomepageSkeleton.vue'
 
 definePageMeta({ layout: 'home', key: (route) => route.fullPath })
 
-const { data, pending, error } = await useAsyncData<HomepagePayload>(
+const { data, pending, error, status } = await useAsyncData<HomepagePayload>(
   'homepage',
   () => $fetch('/api/homepage'),
 )
 const { showBackground } = useBackgroundToggle()
+const showSkeleton = usePageLoading(pending, data, status)
 
 if (error.value) {
   throw createError({
     statusCode: error.value.statusCode ?? 500,
+    statusMessage: 'Failed to load homepage',
+    fatal: true,
+  })
+}
+
+if (!pending.value && !data.value) {
+  throw createError({
+    statusCode: 500,
     statusMessage: 'Failed to load homepage',
     fatal: true,
   })
@@ -36,14 +45,12 @@ useHomeJsonLd()
 </script>
 
 <template>
-  <HomepageSkeleton v-if="pending" />
+  <HomepageSkeleton v-if="showSkeleton" />
 
   <div v-else-if="data">
     <TheHeader />
 
     <div :class="showBackground ? 'page-content-offset pb-6 sm:pb-8' : 'page-content-offset pb-8'">
-      <TickerStrip :articles="data.ticker" />
-
       <div class="home-content">
       <h1 class="sr-only">Forbes Middle East – Latest News</h1>
       <RevealOnEnter :delay="0">

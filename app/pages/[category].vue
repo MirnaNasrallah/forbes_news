@@ -12,11 +12,13 @@ if (!(CATEGORIES as string[]).includes(slug.value)) {
   throw createError({ statusCode: 404, statusMessage: 'Category not found', fatal: true })
 }
 
-const { data, pending, error } = await useAsyncData<CategoryPayload>(
+const { data, pending, error, status } = await useAsyncData<CategoryPayload>(
   () => `category-${slug.value}`,
   () => $fetch(`/api/categories/${slug.value}`),
   { watch: [slug] },
 )
+
+const showSkeleton = usePageLoading(pending, data, status)
 
 if (error.value) {
   const statusCode = error.value.statusCode ?? 500
@@ -27,7 +29,7 @@ if (error.value) {
   })
 }
 
-if (!data.value) {
+if (!pending.value && !data.value) {
   throw createError({ statusCode: 404, statusMessage: 'Category not found', fatal: true })
 }
 
@@ -44,7 +46,7 @@ usePageSeo(() => ({
 </script>
 
 <template>
-  <CategoryPageSkeleton v-if="pending" />
+  <CategoryPageSkeleton v-if="showSkeleton" />
 
   <div v-else-if="data" class="home-content pb-8">
     <RevealOnEnter :delay="0">

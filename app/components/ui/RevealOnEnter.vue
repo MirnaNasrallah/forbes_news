@@ -20,7 +20,7 @@ onMounted(() => {
 <template>
   <component
     :is="tag"
-    :class="mounted ? 'reveal-up' : 'reveal-up-pending'"
+    :class="mounted ? 'reveal-up' : undefined"
     :style="{ '--reveal-delay': `${props.delay}ms` }"
   >
     <slot />

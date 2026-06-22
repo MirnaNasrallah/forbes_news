@@ -1,7 +1,5 @@
-import { useLocalStorage } from '@vueuse/core'
-
 export function useBackgroundToggle() {
-  const showBackground = useLocalStorage('forbes-show-background', true)
+  const showBackground = useState('forbes-show-background', () => false)
 
   function toggleBackground() {
     showBackground.value = !showBackground.value

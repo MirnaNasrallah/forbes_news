@@ -251,6 +251,7 @@ Rather than making assumptions that could diverge from the intended requirements
 
 - **Image compression:** `npm run images:compress` (uses `sharp` via `scripts/compress-images.mjs`). Large PNGs may be converted to WebP; update paths in `utils/thumbnail.ts` when adding assets. `main.png` (live hero) is protected and never resized.
 - **Entrance animations:** `RevealOnEnter.vue` + `.reveal-up` CSS — subtle bottom-up fade on page content; respects `prefers-reduced-motion`.
+- **Loading states:** `usePageLoading` + page skeletons with grey shimmer; content stays visible during SSR until client entrance animations run.
 - **Site URL:** set `NUXT_PUBLIC_SITE_URL` for canonical URLs, Open Graph, `sitemap.xml`, and `robots.txt` in production.
 - **Sitemap:** `/sitemap.xml` (categories + all article slugs).
 - **SEO composable:** `app/composables/usePageSeo.ts` — page meta, OG/Twitter, canonical, optional LCP preload, JSON-LD helpers.
