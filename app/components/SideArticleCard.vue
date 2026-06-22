@@ -10,7 +10,7 @@ const { formatDate } = useFormatDate()
 
 <template>
   <article class="group">
-    <NuxtLink :to="`/articles/${article.slug}`" class="flex gap-[14px] items-start">
+    <NuxtLink :to="`/articles/${article.slug}`" class="flex gap-[14px] items-center h-[182px]">
       <div class="flex-shrink-0 w-[197px] h-[182px] rounded-[8px] overflow-hidden bg-forbes-dark/5">
         <ArticleThumbnail
           :src="article.thumbnail"
@@ -22,7 +22,7 @@ const { formatDate } = useFormatDate()
         />
       </div>
 
-      <div class="flex-1 min-w-0 flex flex-col gap-2.5 pt-1">
+      <div class="flex-1 min-w-0 flex flex-col gap-2.5 justify-center">
         <p class="text-caption text-forbes-dark/60 leading-none">
           <span>{{ article.author.name }}</span>
           <span class="mx-1">—</span>

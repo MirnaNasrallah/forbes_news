@@ -13,6 +13,7 @@ if (!(CATEGORIES as string[]).includes(slug.value)) {
 const { data, pending, error } = await useAsyncData<CategoryPayload>(
   `category-${slug.value}`,
   () => $fetch(`/api/categories/${slug.value}`),
+  { lazy: true },
 )
 
 if (error.value || !data.value) {

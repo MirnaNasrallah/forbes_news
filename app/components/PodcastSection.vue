@@ -10,7 +10,7 @@ defineProps<{
   <section class="mb-14">
     <SectionTitle title="Podcasts" to="/podcast" />
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[14px] justify-items-center xl:justify-items-start">
       <PodcastCard
         v-for="article in articles.slice(0, 6)"
         :key="article.slug"

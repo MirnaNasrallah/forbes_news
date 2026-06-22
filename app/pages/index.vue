@@ -37,6 +37,8 @@ useSeoMeta({
       <div class="home-content">
       <HeroArticle :article="data.hero" />
 
+      <LatestNewsSection :articles="data.latest" />
+
       <WorldNewsSection
         v-if="getSection('world-news')"
         :articles="getSection('world-news')!.articles"

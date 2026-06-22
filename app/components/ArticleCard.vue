@@ -29,9 +29,6 @@ const { formatDate } = useFormatDate()
 
       <!-- Meta block: 420 × 76, gap 7px -->
       <div class="flex flex-col gap-[7px] min-h-[76px]">
-        <span class="category-label">
-          {{ CATEGORY_LABELS[article.category] }}
-        </span>
 
         <h3 class="card-title text-body-md font-semibold text-forbes-dark leading-snug">
           {{ article.title }}

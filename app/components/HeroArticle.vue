@@ -59,14 +59,7 @@ function formatReadingTime(minutes: number): string {
 
       <!-- Read Article -->
       <div class="flex justify-end mt-4">
-        <span class="inline-flex items-center gap-2 text-body-sm font-semibold text-forbes-dark">
-          Read Article
-          <span class="w-7 h-7 rounded-full border border-forbes-dark text-forbes-dark flex items-center justify-center transition-colors group-hover:border-forbes-red group-hover:text-forbes-red">
-            <svg class="w-3.5 h-3.5 transition-transform duration-200 ease-out group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </span>
-        </span>
+        <ActionLink label="Read Article" as="span" />
       </div>
     </NuxtLink>
   </article>

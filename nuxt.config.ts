@@ -36,7 +36,7 @@ export default defineNuxtConfig({
   },
 
   image: {
-    domains: ['picsum.photos', 'placehold.co'],
+    domains: ['images.unsplash.com', 'dummyimage.com'],
     quality: 80,
   },
 

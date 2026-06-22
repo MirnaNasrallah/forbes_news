@@ -9,6 +9,7 @@ const slug = computed(() => route.params.slug as string)
 const { data, pending, error } = await useAsyncData<ArticlePayload>(
   `article-${slug.value}`,
   () => $fetch(`/api/articles/${slug.value}`),
+  { lazy: true },
 )
 
 if (error.value || !data.value) {

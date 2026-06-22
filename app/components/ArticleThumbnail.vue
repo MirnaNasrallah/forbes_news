@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Category } from '#types/article'
-import { getPlaceholderThumbnail } from '#utils/thumbnail'
+import { getArticleThumbnail, getThumbnailFallbacks } from '#utils/thumbnail'
 
 const props = withDefaults(
   defineProps<{
@@ -17,30 +17,35 @@ const props = withDefaults(
   },
 )
 
-function resolveFallback() {
-  return getPlaceholderThumbnail(
-    props.category,
-    props.width ?? 800,
-    props.height ?? 500,
-  )
+const seed = computed(() => props.alt || props.category)
+const dimensions = computed(() => ({
+  width: props.width ?? 800,
+  height: props.height ?? 500,
+}))
+
+function buildSources() {
+  const { width, height } = dimensions.value
+  const primary = props.src || getArticleThumbnail(seed.value, props.category, width, height)
+  const fallbacks = getThumbnailFallbacks(seed.value, props.category, width, height)
+  return [primary, ...fallbacks.filter((url) => url !== primary)]
 }
 
-const displaySrc = ref(props.src || resolveFallback())
-const usedFallback = ref(!props.src)
+const sources = ref<string[]>(buildSources())
+const sourceIndex = ref(0)
+const displaySrc = computed(() => sources.value[sourceIndex.value] ?? '')
 
 watch(
-  () => props.src,
-  (next) => {
-    if (usedFallback.value) return
-    displaySrc.value = next || resolveFallback()
-    usedFallback.value = !next
+  () => [props.src, props.category, props.width, props.height] as const,
+  () => {
+    sources.value = buildSources()
+    sourceIndex.value = 0
   },
 )
 
 function onError() {
-  if (usedFallback.value) return
-  usedFallback.value = true
-  displaySrc.value = resolveFallback()
+  if (sourceIndex.value < sources.value.length - 1) {
+    sourceIndex.value += 1
+  }
 }
 </script>
 

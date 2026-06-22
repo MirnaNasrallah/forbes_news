@@ -13,7 +13,7 @@ function isActiveCategory(cat: string): boolean {
 </script>
 
 <template>
-  <header class="bg-forbes-bg sticky top-0 z-50">
+  <header class="bg-forbes-bg top-0 z-50">
     <!-- Top bar -->
     <div class="home-content border-t border-b border-forbes-dark">
       <div class="flex items-center justify-between h-10">
@@ -71,7 +71,7 @@ function isActiveCategory(cat: string): boolean {
               class="block px-4 py-2.5 text-caption font-semibold uppercase tracking-wide transition-colors"
               :class="
                 isActiveCategory(cat)
-                  ? 'text-forbes-red border-b-2 border-forbes-red'
+                  ? 'text-forbes-red'
                   : 'text-forbes-dark hover:text-forbes-red'
               "
             >
