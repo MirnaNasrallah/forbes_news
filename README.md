@@ -235,4 +235,17 @@ Whenever multiple implementation options were available, preference was given to
 * Readable code.
 * Predictable behavior.
 
+
+## 10. Menu and Search Functionality
+
+The menu and search interfaces were implemented as UI components only.
+
+Functional implementations were intentionally omitted because the design specification did not define:
+
+* The structure or content of the navigation menu.
+* The expected search scope, data source, or filtering behavior.
+
+Rather than making assumptions that could diverge from the intended requirements, only the visual components were implemented while keeping them ready for future integration.
+
+
 The goal was to create a maintainable assessment project that resembles production practices without introducing unnecessary complexity.
