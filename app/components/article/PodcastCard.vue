@@ -17,7 +17,7 @@ function formatReadingTime(minutes: number): string {
 <template>
   <RevealOnEnter :delay="revealDelay">
     <article class="group">
-    <NuxtLink :to="`/articles/${article.slug}`" class="flex w-[420px] h-[200px] gap-[14px] items-center">
+    <NuxtLink :to="`/articles/${article.slug}`" class="flex w-full max-w-[420px] h-[200px] gap-[14px] items-center">
       <div class="card-image flex-shrink-0 w-[170px] h-[200px] bg-forbes-dark/5">
         <ArticleThumbnail
           :src="article.thumbnail"

@@ -15,7 +15,7 @@ const { formatDate } = useFormatDate()
 <template>
   <RevealOnEnter :delay="revealDelay">
     <article class="group">
-    <NuxtLink :to="`/articles/${article.slug}`" class="flex gap-[14px] items-center h-[182px]">
+    <NuxtLink :to="`/articles/${article.slug}`" class="flex gap-[14px] items-center h-[182px] w-full min-w-0">
       <div class="flex-shrink-0 w-[197px] h-[182px] rounded-[8px] overflow-hidden bg-forbes-dark/5">
         <ArticleThumbnail
           :src="article.thumbnail"

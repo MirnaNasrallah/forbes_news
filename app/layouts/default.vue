@@ -1,10 +1,10 @@
 <template>
-  <div class="relative min-h-screen w-full">
+  <div class="layout-root">
     <PageBackground />
 
-    <div class="relative z-10 min-h-screen flex flex-col bg-forbes-bg">
+    <div class="page-shell">
       <TheHeader />
-      <main class="flex-1 bg-forbes-bg page-content-offset">
+      <main class="flex-1 w-full min-w-0 bg-forbes-bg page-content-offset">
         <slot />
       </main>
       <TheFooter />

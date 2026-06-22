@@ -26,7 +26,7 @@ function isActiveCategory(cat: string): boolean {
           </div>
           <label
             v-if="route.path === '/'"
-            class="flex items-center gap-1.5 text-caption text-forbes-dark cursor-pointer select-none relative"
+            class="hidden lg:flex items-center gap-1.5 text-caption text-forbes-dark cursor-pointer select-none relative"
           >
             <input
               type="checkbox"
@@ -81,8 +81,8 @@ function isActiveCategory(cat: string): boolean {
       </div>
     </div>
 
-    <nav aria-label="Category navigation" class="home-content border-b border-forbes-dark">
-      <div class="overflow-x-auto">
+    <nav aria-label="Category navigation" class="home-content border-b border-forbes-dark w-full min-w-0">
+      <div class="w-full max-w-full min-w-0 overflow-x-auto">
         <ul class="flex items-center justify-start lg:justify-center gap-0 h-11 whitespace-nowrap">
           <li v-for="cat in CATEGORIES" :key="cat">
             <NuxtLink

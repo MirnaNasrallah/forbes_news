@@ -52,15 +52,18 @@ const bottomArticles = computed(() => props.articles.slice(3, 6))
       </article>
       </RevealOnEnter>
 
-      <div class="flex flex-col gap-[21px] w-full h-[490px]">
+      <div class="flex flex-col gap-[21px] w-full lg:h-[490px]">
         <RevealOnEnter
           v-for="(article, index) in sideArticles"
           :key="article.slug"
           :delay="(index + 1) * 60"
         >
-        <article class="group w-full h-[230px]">
-          <NuxtLink :to="`/articles/${article.slug}`" class="flex items-center gap-[11px] w-full h-full">
-            <div class="w-[302px] h-[80px] flex flex-col justify-center gap-[11px]">
+        <article class="group w-full lg:h-[230px]">
+          <NuxtLink
+            :to="`/articles/${article.slug}`"
+            class="flex flex-col lg:flex-row items-stretch lg:items-center gap-[11px] w-full h-full min-w-0"
+          >
+            <div class="w-full lg:w-[302px] lg:shrink-0 min-w-0 flex flex-col justify-center gap-[11px] lg:h-[80px]">
               <h4 class="text-h5 font-medium text-forbes-dark line-clamp-2">
                 {{ article.title }}
               </h4>
@@ -71,7 +74,7 @@ const bottomArticles = computed(() => props.articles.slice(3, 6))
               </p>
             </div>
 
-            <div class="w-[304px] h-[230px] rounded-[4px] overflow-hidden bg-forbes-dark/10">
+            <div class="w-full lg:w-[304px] lg:shrink-0 aspect-[304/230] lg:aspect-auto lg:h-[230px] rounded-[4px] overflow-hidden bg-forbes-dark/10">
               <ArticleThumbnail
                 :src="article.thumbnail"
                 :alt="article.title"

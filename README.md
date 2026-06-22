@@ -9,7 +9,7 @@ Production-style Forbes Middle East news assessment frontend built with Nuxt 3, 
 ## Prerequisites
 
 * Node.js (LTS recommended)
-* npm
+* npm or yarn
 
 ## Setup
 
