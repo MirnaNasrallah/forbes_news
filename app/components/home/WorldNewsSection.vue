@@ -14,12 +14,13 @@ const sideArticles = computed(() => props.articles.slice(1, 4))
     <SectionTitle title="World News" to="/world-news" />
 
     <div class="grid grid-cols-1 lg:grid-cols-[1fr_469px] gap-[14px] lg:items-start">
-      <FeaturedArticleCard :article="featured" />
+      <FeaturedArticleCard :article="featured" :reveal-delay="0" />
       <div class="flex flex-col gap-[21px] lg:w-[469px] lg:h-[588px]">
         <SideArticleCard
-          v-for="article in sideArticles"
+          v-for="(article, index) in sideArticles"
           :key="article.slug"
           :article="article"
+          :reveal-delay="(index + 1) * 60"
         />
       </div>
     </div>

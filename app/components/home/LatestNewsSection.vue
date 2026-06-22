@@ -18,6 +18,7 @@ const bottomArticles = computed(() => props.articles.slice(3, 6))
     <SectionTitle title="Latest News" to="/world-news" />
 
     <div class="grid grid-cols-1 lg:grid-cols-[628px_628px] gap-[30px]">
+      <RevealOnEnter :delay="0">
       <article class="group relative w-full h-[490px] rounded-[4px] overflow-hidden bg-forbes-dark/10">
         <NuxtLink :to="`/articles/${featured.slug}`" class="block h-full">
           <ArticleThumbnail
@@ -49,13 +50,15 @@ const bottomArticles = computed(() => props.articles.slice(3, 6))
           </span>
         </NuxtLink>
       </article>
+      </RevealOnEnter>
 
       <div class="flex flex-col gap-[21px] w-full h-[490px]">
-        <article
-          v-for="article in sideArticles"
+        <RevealOnEnter
+          v-for="(article, index) in sideArticles"
           :key="article.slug"
-          class="group w-full h-[230px]"
+          :delay="(index + 1) * 60"
         >
+        <article class="group w-full h-[230px]">
           <NuxtLink :to="`/articles/${article.slug}`" class="flex items-center gap-[11px] w-full h-full">
             <div class="w-[302px] h-[80px] flex flex-col justify-center gap-[11px]">
               <h4 class="text-h5 font-medium text-forbes-dark line-clamp-2">
@@ -80,14 +83,16 @@ const bottomArticles = computed(() => props.articles.slice(3, 6))
             </div>
           </NuxtLink>
         </article>
+        </RevealOnEnter>
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[14px] mt-[14px]">
       <ArticleCard
-        v-for="article in bottomArticles"
+        v-for="(article, index) in bottomArticles"
         :key="article.slug"
         :article="article"
+        :reveal-delay="(index + 1) * 60"
       />
     </div>
   </section>

@@ -45,6 +45,7 @@ usePageSeo(() => ({
   <div class="min-h-screen bg-forbes-bg text-forbes-dark">
     <TheHeader />
 
+    <RevealOnEnter :delay="0">
     <main class="home-content page-content-offset pb-12 md:pb-16">
       <p class="category-label mb-3">{{ statusCode }}</p>
       <h1 class="text-h1 font-bold uppercase tracking-wide mb-5">{{ title }}</h1>
@@ -82,5 +83,6 @@ usePageSeo(() => ({
         </div>
       </div>
     </main>
+    </RevealOnEnter>
   </div>
 </template>

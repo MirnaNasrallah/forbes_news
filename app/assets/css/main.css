@@ -198,6 +198,37 @@
 }
 
 @layer utilities {
+  @keyframes reveal-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .reveal-up-pending {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .reveal-up {
+    animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: var(--reveal-delay, 0ms);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-up-pending,
+    .reveal-up {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;

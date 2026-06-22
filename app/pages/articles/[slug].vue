@@ -47,50 +47,61 @@ useArticleJsonLd(() => data.value?.article)
 
   <div v-else-if="data" class="home-content pb-10">
     <div class="article-column">
-      <div class="card-image w-full aspect-[16/7] bg-forbes-dark/10">
-        <ArticleThumbnail
-          :src="data.article.thumbnail"
-          :alt="data.article.title"
-          :category="data.article.category"
-          img-class="w-full h-full object-contain"
-          loading="eager"
-          fetchpriority="high"
-          :width="980"
-          :height="653"
-          fit="contain"
-        />
-      </div>
+      <RevealOnEnter :delay="0">
+        <div class="card-image w-full aspect-[16/7] bg-forbes-dark/10">
+          <ArticleThumbnail
+            :src="data.article.thumbnail"
+            :alt="data.article.title"
+            :category="data.article.category"
+            img-class="w-full h-full object-contain"
+            loading="eager"
+            fetchpriority="high"
+            :width="1891"
+            :height="832"
+            fit="contain"
+          />
+        </div>
+      </RevealOnEnter>
 
       <ContentDivider />
 
-      <div class="py-5">
-        <p class="text-caption font-semibold uppercase tracking-widest text-forbes-dark mb-1">
-          By {{ data.article.author.name }}
-        </p>
-        <p class="text-caption text-forbes-dark/60 uppercase tracking-wide">
-          Published {{ formatDateLong(data.article.publishedAt) }}
-        </p>
-      </div>
+      <RevealOnEnter :delay="60">
+        <div class="py-5">
+          <p class="text-caption font-semibold uppercase tracking-widest text-forbes-dark mb-1">
+            By {{ data.article.author.name }}
+          </p>
+          <p class="text-caption text-forbes-dark/60 uppercase tracking-wide">
+            Published {{ formatDateLong(data.article.publishedAt) }}
+          </p>
+        </div>
+      </RevealOnEnter>
 
       <ContentDivider />
 
-      <h1 class="text-h1 font-bold uppercase leading-tight text-forbes-dark py-5">
-        {{ data.article.title }}
-      </h1>
+      <RevealOnEnter :delay="120">
+        <h1 class="text-h1 font-bold uppercase leading-tight text-forbes-dark py-5">
+          {{ data.article.title }}
+        </h1>
+      </RevealOnEnter>
 
       <ContentDivider />
 
-      <!-- eslint-disable-next-line vue/no-v-html -->
-      <div class="article-body pt-8" v-html="data.article.body" />
+      <RevealOnEnter :delay="180">
+        <!-- eslint-disable-next-line vue/no-v-html -->
+        <div class="article-body pt-8" v-html="data.article.body" />
+      </RevealOnEnter>
     </div>
 
     <section v-if="data.related.length" class="mt-16">
-      <SectionTitle title="Similar News" />
+      <RevealOnEnter :delay="240">
+        <SectionTitle title="Similar News" />
+      </RevealOnEnter>
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10 justify-items-center xl:justify-items-start">
         <ArticleCard
-          v-for="article in data.related"
+          v-for="(article, index) in data.related"
           :key="article.slug"
           :article="article"
+          :reveal-delay="index * 60"
         />
       </div>
     </section>

@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import type { Article } from '#types/article'
 
-defineProps<{
-  article: Article
-}>()
+withDefaults(
+  defineProps<{
+    article: Article
+    revealDelay?: number
+  }>(),
+  { revealDelay: 0 },
+)
 
 const { formatDate } = useFormatDate()
 </script>
 
 <template>
-  <article class="group relative overflow-hidden rounded-[8px] bg-forbes-dark/10 h-[520px] lg:h-[588px]">
+  <RevealOnEnter :delay="revealDelay">
+    <article class="group relative overflow-hidden rounded-[8px] bg-forbes-dark/10 h-[520px] lg:h-[588px]">
     <NuxtLink :to="`/articles/${article.slug}`" class="block h-full relative">
       <div class="absolute inset-0">
         <ArticleThumbnail
@@ -39,5 +44,6 @@ const { formatDate } = useFormatDate()
         </p>
       </div>
     </NuxtLink>
-  </article>
+    </article>
+  </RevealOnEnter>
 </template>

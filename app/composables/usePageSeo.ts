@@ -1,7 +1,7 @@
 const SITE_NAME = 'Forbes Middle East'
 const DEFAULT_DESCRIPTION =
   'Forbes Middle East delivers authoritative business, technology, culture, and world news coverage across the Middle East and beyond.'
-const DEFAULT_OG_IMAGE = '/images/main.webp'
+const DEFAULT_OG_IMAGE = '/images/main.png'
 
 export function useSiteUrl(): string {
   const config = useRuntimeConfig()

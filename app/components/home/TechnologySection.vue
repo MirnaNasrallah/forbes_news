@@ -12,9 +12,10 @@ defineProps<{
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
       <TechnologyCard
-        v-for="article in articles.slice(0, 4)"
+        v-for="(article, index) in articles.slice(0, 4)"
         :key="article.slug"
         :article="article"
+        :reveal-delay="index * 60"
       />
     </div>
   </section>

@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import type { Article } from '#types/article'
 
-defineProps<{
-  article: Article
-}>()
+withDefaults(
+  defineProps<{
+    article: Article
+    revealDelay?: number
+  }>(),
+  { revealDelay: 0 },
+)
 
 function formatReadingTime(minutes: number): string {
   return `${minutes} Minutes`
@@ -11,7 +15,8 @@ function formatReadingTime(minutes: number): string {
 </script>
 
 <template>
-  <article class="group">
+  <RevealOnEnter :delay="revealDelay">
+    <article class="group">
     <NuxtLink :to="`/articles/${article.slug}`" class="flex w-[420px] h-[200px] gap-[14px] items-center">
       <div class="card-image flex-shrink-0 w-[170px] h-[200px] bg-forbes-dark/5">
         <ArticleThumbnail
@@ -36,5 +41,6 @@ function formatReadingTime(minutes: number): string {
         </p>
       </div>
     </NuxtLink>
-  </article>
+    </article>
+  </RevealOnEnter>
 </template>

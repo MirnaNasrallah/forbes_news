@@ -3,7 +3,7 @@ import type { HomepagePayload, SectionPreview } from '#types/article'
 import { HERO_LIVE_IMAGE } from '#utils/thumbnail'
 import HomepageSkeleton from '~/app/components/ui/skeleton/HomepageSkeleton.vue'
 
-definePageMeta({ layout: 'home' })
+definePageMeta({ layout: 'home', key: (route) => route.fullPath })
 
 const { data, pending, error } = await useAsyncData<HomepagePayload>(
   'homepage',
@@ -46,24 +46,29 @@ useHomeJsonLd()
 
       <div class="home-content">
       <h1 class="sr-only">Forbes Middle East – Latest News</h1>
-      <HeroArticle :article="data.hero" />
+      <RevealOnEnter :delay="0">
+        <HeroArticle :article="data.hero" />
+      </RevealOnEnter>
 
-      <LatestNewsSection :articles="data.latest" />
+      <RevealOnEnter :delay="60">
+        <TickerStrip :articles="data.ticker" />
+      </RevealOnEnter>
 
-      <WorldNewsSection
-        v-if="getSection('world-news')"
-        :articles="getSection('world-news')!.articles"
-      />
+      <RevealOnEnter :delay="120">
+        <LatestNewsSection :articles="data.latest" />
+      </RevealOnEnter>
 
-      <TechnologySection
-        v-if="getSection('technology')"
-        :articles="getSection('technology')!.articles"
-      />
+      <RevealOnEnter v-if="getSection('world-news')" :delay="180">
+        <WorldNewsSection :articles="getSection('world-news')!.articles" />
+      </RevealOnEnter>
 
-      <PodcastSection
-        v-if="getSection('podcast')"
-        :articles="getSection('podcast')!.articles"
-      />
+      <RevealOnEnter v-if="getSection('technology')" :delay="240">
+        <TechnologySection :articles="getSection('technology')!.articles" />
+      </RevealOnEnter>
+
+      <RevealOnEnter v-if="getSection('podcast')" :delay="300">
+        <PodcastSection :articles="getSection('podcast')!.articles" />
+      </RevealOnEnter>
       </div>
     </div>
 

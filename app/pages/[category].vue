@@ -47,19 +47,22 @@ usePageSeo(() => ({
   <CategoryPageSkeleton v-if="pending" />
 
   <div v-else-if="data" class="home-content pb-8">
-    <div class="mb-10">
-      <h1 class="section-heading pb-4">
-        {{ CATEGORY_LABELS[data.category] }} News
-      </h1>
-      <div class="border-t border-forbes-dark" />
-    </div>
+    <RevealOnEnter :delay="0">
+      <div class="mb-10">
+        <h1 class="section-heading pb-4">
+          {{ CATEGORY_LABELS[data.category] }} News
+        </h1>
+        <div class="border-t border-forbes-dark" />
+      </div>
+    </RevealOnEnter>
 
     <!-- Article grid: 420px cards, 3 columns -->
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10 justify-items-center xl:justify-items-start">
       <ArticleCard
-        v-for="article in allArticles"
+        v-for="(article, index) in allArticles"
         :key="article.slug"
         :article="article"
+        :reveal-delay="index * 60"
       />
     </div>
   </div>

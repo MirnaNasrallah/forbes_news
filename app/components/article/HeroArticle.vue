@@ -24,8 +24,8 @@ function formatReadingTime(minutes: number): string {
           img-class="w-full h-auto max-h-[580px] object-contain mx-auto block transition-transform duration-300 group-hover:scale-105"
           loading="eager"
           fetchpriority="high"
-          :width="640"
-          :height="282"
+          :width="1891"
+          :height="832"
           fit="contain"
         />
 

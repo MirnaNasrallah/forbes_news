@@ -2,13 +2,18 @@
 import type { Article } from '#types/article'
 import { CATEGORY_LABELS } from '#types/article'
 
-defineProps<{
-  article: Article
-}>()
+withDefaults(
+  defineProps<{
+    article: Article
+    revealDelay?: number
+  }>(),
+  { revealDelay: 0 },
+)
 </script>
 
 <template>
-  <NuxtLink
+  <RevealOnEnter :delay="revealDelay">
+    <NuxtLink
     :to="`/articles/${article.slug}`"
     class="flex items-center w-[268px] h-[84px] gap-[10px] group shrink-0"
   >
@@ -34,4 +39,5 @@ defineProps<{
       </p>
     </div>
   </NuxtLink>
+  </RevealOnEnter>
 </template>

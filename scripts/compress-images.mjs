@@ -4,7 +4,10 @@ import sharp from 'sharp'
 
 const ROOT = new URL('../public/images', import.meta.url).pathname
 
-const HERO_FILES = new Set(['main.webp', 'hero-cover.webp'])
+/** Full-quality live hero — never resize or recompress. */
+const SKIP_FILES = new Set(['main.png'])
+
+const HERO_FILES = new Set(['hero-cover.webp'])
 
 async function collectFiles(dir) {
   const entries = await readdir(dir, { withFileTypes: true })
@@ -31,7 +34,13 @@ function maxWidthFor(filePath) {
 }
 
 async function compressFile(filePath) {
+  const name = filePath.split('/').pop() ?? ''
   const before = (await stat(filePath)).size
+
+  if (SKIP_FILES.has(name)) {
+    return { filePath, before, after: before, skipped: true, protected: true }
+  }
+
   const maxWidth = maxWidthFor(filePath)
   const ext = filePath.split('.').pop()?.toLowerCase() ?? 'png'
 
@@ -63,7 +72,9 @@ let saved = 0
 for (const file of files) {
   const result = await compressFile(file)
   const rel = relative(ROOT, result.filePath)
-  if (result.skipped) {
+  if (result.protected) {
+    console.log(`skip ${rel} (protected full-quality hero)`)
+  } else if (result.skipped) {
     console.log(`skip ${rel} (${(result.before / 1024).toFixed(0)} KB, no gain)`)
   } else {
     saved += result.before - result.after
