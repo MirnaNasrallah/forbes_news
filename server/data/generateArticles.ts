@@ -1,6 +1,6 @@
 import type { Article, Author, Category } from '#types/article'
 import { CATEGORIES } from '#types/article'
-import { CATEGORY_IMAGE_COUNTS, getCategoryThumbnailByIndex } from '#utils/thumbnail'
+import { CATEGORY_IMAGE_COUNTS, CATEGORY_THUMBNAILS, getCategoryThumbnailByIndex } from '#utils/thumbnail'
 
 // ─── Author pool ────────────────────────────────────────────────────────────
 
@@ -229,7 +229,6 @@ const WORD_BANKS: Record<Category, CategoryBank> = {
     titles: [
       'The Journey from Aspiring Athlete to Global Sports Icon',
       'The Economics, Sponsorships, and Branding Behind the Scores',
-      'Affect the Integrity and Future of Professional Sports',
       'How Sports Technology Is Changing Training and Performance',
       'The Business of Football: Broadcasting Rights and Global Expansion',
       'Women in Sport: Progress, Gaps, and the Road to Parity',
@@ -374,6 +373,27 @@ function buildBody(
   return `<p>${excerpt}</p>\n\n${opener}\n\n${filler1}\n\n${filler2}`
 }
 
+function getUsedThumbnailIndices(seeds: Article[], category: Category): Set<number> {
+  const images = CATEGORY_THUMBNAILS[category]
+  const used = new Set<number>()
+  for (const seed of seeds.filter((s) => s.category === category)) {
+    const index = images.indexOf(seed.thumbnail)
+    if (index >= 0) used.add(index)
+  }
+  return used
+}
+
+function takeNextThumbnailIndex(used: Set<number>, category: Category): number {
+  const images = CATEGORY_THUMBNAILS[category]
+  for (let index = 0; index < images.length; index++) {
+    if (!used.has(index)) {
+      used.add(index)
+      return index
+    }
+  }
+  return 0
+}
+
 // ─── Main generator ───────────────────────────────────────────────────────────
 
 export function generateArticles(seeds: Article[]): Article[] {
@@ -383,10 +403,11 @@ export function generateArticles(seeds: Article[]): Article[] {
     const bank = WORD_BANKS[category]
     const existingInCategory = seeds.filter((s) => s.category === category).length
     const targetCount = CATEGORY_IMAGE_COUNTS[category]
+    const usedThumbnailIndices = getUsedThumbnailIndices(seeds, category)
     const toGenerate = Math.max(0, targetCount - existingInCategory)
 
     for (let i = 0; i < toGenerate; i++) {
-      const imageIndex = existingInCategory + i
+      const imageIndex = takeNextThumbnailIndex(usedThumbnailIndices, category)
       const title = bank.titles[i % bank.titles.length]!
       const excerpt = bank.excerpts[i % bank.excerpts.length]!
       const tags = bank.tags[i % bank.tags.length]!

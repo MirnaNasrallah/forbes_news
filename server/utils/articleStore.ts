@@ -7,7 +7,7 @@ import type {
   SectionPreview,
 } from '#types/article'
 import { CATEGORIES, CATEGORY_LABELS } from '#types/article'
-import { CATEGORY_IMAGE_COUNTS, CATEGORY_THUMBNAILS } from '#utils/thumbnail'
+import { CATEGORY_IMAGE_COUNTS, CATEGORY_THUMBNAILS, HERO_LIVE_IMAGE } from '#utils/thumbnail'
 import { generateArticles } from '../data/generateArticles'
 import { seedArticles } from '../data/articles.seed'
 
@@ -24,6 +24,8 @@ function findArticleByThumbnail(category: Category, filename: string): Article |
 function sortByThumbnailOrder(articles: Article[], category: Category): Article[] {
   const order = CATEGORY_THUMBNAILS[category]
   return [...articles].sort((a, b) => {
+    if (a.thumbnail === HERO_LIVE_IMAGE) return -1
+    if (b.thumbnail === HERO_LIVE_IMAGE) return 1
     const aIndex = order.indexOf(a.thumbnail)
     const bIndex = order.indexOf(b.thumbnail)
     return (aIndex === -1 ? order.length : aIndex) - (bIndex === -1 ? order.length : bIndex)
@@ -48,7 +50,7 @@ export function getArticlesByCategory(category: Category): Article[] {
 
 export function getHomepagePayload(): HomepagePayload {
   const hero =
-    _articles.find((a) => a.featured && a.category === 'culture') ??
+    getArticleBySlug('egypt-wins-first-match-in-world-cup') ??
     _articles.find((a) => a.featured) ??
     _articles[0]!
 
@@ -56,7 +58,7 @@ export function getHomepagePayload(): HomepagePayload {
     'world-news': 'social-movements-reshaping-world',
     technology: 'ai-robotics-latest-developments',
     health: 'tailoring-treatments-genetic-profiles',
-    sports: 'celebrating-diversity-sports',
+    sports: 'egypt-wins-first-match-in-world-cup',
   }
   const ticker = (['world-news', 'technology', 'health', 'sports'] as Category[]).map((cat) => {
     const slug = tickerSlugs[cat]

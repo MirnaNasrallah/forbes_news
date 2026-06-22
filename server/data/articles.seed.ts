@@ -69,6 +69,20 @@ const POLITICS_BODY = `
 <p>International relations are being reconfigured around new axes of competition and cooperation. The US-China rivalry is reshaping alliance structures, trade patterns, and technology ecosystems in ways that will define the geopolitical landscape for a generation. Meanwhile, middle powers in the Middle East, South Asia, and Southeast Asia are navigating this bipolar tension with increasing strategic sophistication, refusing simple alignment while extracting maximum benefit from competing great-power bids for influence.</p>
 `.trim()
 
+const EGYPT_WORLD_CUP_BODY = `
+<p>Egypt secured a landmark victory over New Zealand at the FIFA World Cup 2026, claiming their first-ever win at the tournament and sending ripples of celebration from Cairo to Auckland. The Pharaohs delivered a composed, clinical performance in Group G, earning three crucial points that lift them to the top of the standings with four points from two matches.</p>
+
+<p>The match turned in Egypt's favour in the second half, when a well-worked move down the left released the winger into space. His low cross found the striker unmarked at the far post, and the finish—calm and precise—sent the Egyptian bench and travelling supporters into delirium. New Zealand, known for their disciplined defensive structure, struggled to contain Egypt's pace and movement in the final third as the game wore on.</p>
+
+<p>Group G has emerged as one of the most competitive pools at this World Cup. Alongside Egypt and New Zealand, the group features established footballing nations with pedigree and ambition. Egypt's four points after two rounds of fixtures place them in pole position, but head coach Hassan Shehata cautioned against complacency in his post-match press conference. "We have achieved something historic tonight," he said. "But the group is not decided. We must recover, analyse, and prepare for what comes next with the same hunger."</p>
+
+<p>For Egyptian football, the result carries significance beyond the table. The national team has long carried the hopes of a passionate fan base that spans generations and continents. A World Cup win—particularly against a physically robust, tactically organised opponent like New Zealand—validates years of investment in youth development, coaching infrastructure, and the diaspora's enduring connection to the national side.</p>
+
+<p>New Zealand, for their part, remain in contention but face a narrower path forward. They will need a positive result in their remaining fixture and favourable results elsewhere to advance. Coach Darren Bazeley acknowledged that his side were second best on the night. "Egypt deserved it. We didn't create enough, and when you give a team of that quality openings, they punish you."</p>
+
+<p>Attention now turns to Egypt's final group-stage assignment and the broader knockout picture. With four points and momentum on their side, the Pharaohs have announced themselves as a team capable of not merely participating at a World Cup, but competing. For millions of Egyptians waking up to the news, that distinction matters—and tonight, it felt very real indeed.</p>
+`.trim()
+
 const SPORTS_BODY = `
 <p>Sport has always been more than competition. At its best, it functions as a unique arena in which societies work out questions about identity, fairness, excellence, and belonging in ways that other institutions cannot replicate. The contemporary sports landscape—shaped by globalization, digital media, and unprecedented commercial scale—reflects and magnifies many of the central tensions of our moment.</p>
 
@@ -89,16 +103,17 @@ export const seedArticles: Article[] = [
   {
     id: 'egypt-wins-first-match-in-world-cup',
     slug: 'egypt-wins-first-match-in-world-cup',
-    title: 'Egypt wins their first match in a world cup and leads group G with 4 points',
+    title: 'Egypt wins their first match in a World Cup and leads Group G with 4 points',
     excerpt:
-      'Egypt wins their first match in a world cup and leads group G with 4 points.',
-    body: SPORTS_BODY,
+      'The Pharaohs beat New Zealand at the FIFA World Cup 2026 to claim their first-ever tournament victory, moving to four points and the top of Group G.',
+    body: EGYPT_WORLD_CUP_BODY,
     category: 'sports',
-    tags: ['sports', 'world-cup', 'egypt', 'group-g'],
+    tags: ['sports', 'world-cup', 'egypt', 'new-zealand', 'group-g'],
     author: { name: 'Nina Volkov', slug: 'nina-volkov', title: 'Sports Reporter' },
-    publishedAt: '2024-09-09T08:00:00Z',
-    thumbnail: getCategoryThumbnailByIndex('sports', 0),
+    publishedAt: '2026-06-22T08:00:00Z',
+    thumbnail: HERO_LIVE_IMAGE,
     readingTime: 5,
+    featured: true,
   },
   {
     id: 'social-movements-reshaping-world',

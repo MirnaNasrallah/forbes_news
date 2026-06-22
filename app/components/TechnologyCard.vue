@@ -20,7 +20,6 @@ const { formatDate } = useFormatDate()
           img-class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
-      <span class="category-label">{{ CATEGORY_LABELS[article.category] }}</span>
       <time class="block text-caption text-forbes-dark/60 mt-1" :datetime="article.publishedAt">
         {{ formatDate(article.publishedAt) }}
       </time>

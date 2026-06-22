@@ -15,6 +15,7 @@ const props = withDefaults(
     height?: number
     loading?: 'lazy' | 'eager'
     imgClass?: string
+    fit?: 'cover' | 'contain' | 'fill' | 'inside' | 'outside'
   }>(),
   {
     loading: 'lazy',
@@ -107,6 +108,7 @@ onUnmounted(() => {
     :loading="loading"
     :width="width"
     :height="height"
+    :fit="fit"
     @load="onLoad"
     @error="onError"
   />

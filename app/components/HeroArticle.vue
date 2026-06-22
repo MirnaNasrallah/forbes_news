@@ -16,16 +16,15 @@ function formatReadingTime(minutes: number): string {
 <template>
   <article class="group mb-10">
     <NuxtLink :to="`/articles/${article.slug}`" class="block">
-      <!-- Live article image (not the page background) -->
-      <div class="card-image relative w-full aspect-[16/7] bg-forbes-dark/10">
-        <ArticleThumbnail
+      <!-- Live article image — max 1320×580, served directly (no IPX crop) -->
+      <div class="card-image relative w-full max-w-[1320px] mx-auto bg-forbes-dark/10">
+        <img
           :src="article.thumbnail"
           :alt="article.title"
-          :category="article.category"
-          img-class="w-full h-full object-cover"
+          class="w-full h-auto max-h-[580px] object-contain mx-auto block"
           loading="eager"
-          :width="1320"
-          :height="578"
+          width="1320"
+          height="580"
         />
 
         <div class="absolute top-4 left-4 flex items-center gap-1.5 bg-forbes-red text-white text-caption font-semibold uppercase tracking-wide px-2.5 py-1">
