@@ -16,20 +16,20 @@ function formatReadingTime(minutes: number): string {
 <template>
   <article class="group mb-10">
     <NuxtLink :to="`/articles/${article.slug}`" class="block">
-      <div class="card-image relative w-full max-w-[1320px] mx-auto bg-forbes-dark/10">
+      <div class="card-image relative w-full bg-forbes-dark/10">
         <ArticleThumbnail
           :src="article.thumbnail"
           :alt="article.title"
           :category="article.category"
-          img-class="w-full h-auto max-h-[580px] object-contain mx-auto block"
+          img-class="w-full h-auto max-h-[580px] object-contain mx-auto block transition-transform duration-300 group-hover:scale-105"
           loading="eager"
           :width="1320"
           :height="580"
           fit="contain"
         />
 
-        <div class="absolute top-4 left-4 flex items-center gap-1.5 bg-forbes-red text-white text-caption font-semibold uppercase tracking-wide px-2.5 py-1">
-          <span class="w-1.5 h-1.5 rounded-full bg-white" />
+        <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-[4px] border border-forbes-dark bg-white dark:bg-forbes-surface/95 py-1.5 px-2 text-caption font-semibold uppercase tracking-wide text-forbes-dark shadow-sm">
+          <span class="h-1.5 w-1.5 rounded-[4px] bg-forbes-red" />
           Live Updates
         </div>
       </div>
@@ -51,12 +51,11 @@ function formatReadingTime(minutes: number): string {
         </p>
       </div>
 
-      <h2 class="live-title mt-4">
-        {{ article.title }}
-      </h2>
-
-      <div class="flex justify-end mt-4">
-        <ActionLink label="Read Article" as="span" />
+      <div class="flex items-start justify-between gap-4 mt-4">
+        <h2 class="live-title flex-1 min-w-0">
+          {{ article.title }}
+        </h2>
+        <ActionLink label="Read Article" as="span" class="shrink-0 mt-1" />
       </div>
     </NuxtLink>
   </article>

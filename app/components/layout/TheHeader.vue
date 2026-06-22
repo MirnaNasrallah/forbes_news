@@ -13,15 +13,20 @@ function isActiveCategory(cat: string): boolean {
 </script>
 
 <template>
-  <header class="bg-forbes-bg top-0 z-50">
+  <header class="bg-forbes-bg top-0 z-50 pt-4">
     <div class="home-content border-t border-b border-forbes-dark">
       <div class="flex items-center justify-between h-10">
         <div class="flex items-center gap-4">
-          <time class="text-caption text-forbes-dark">{{ today }}</time>
+          <div class="flex items-center gap-2 text-forbes-dark">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9 9 0 100-18 9 9 0 000 18z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.6 9h16.8M12 3.6c-1.8 2.4-2.8 5.2-2.8 8.4s1 6 2.8 8.4c1.8-2.4 2.8-5.2 2.8-8.4S13.8 6 12 3.6z" />
+            </svg>
+            <time class="text-caption">{{ today }}</time>
+          </div>
           <label
             v-if="route.path === '/'"
-            class="flex items-center gap-1.5 text-caption text-forbes-dark cursor-pointer select-none"
-            title="Toggle homepage cover frame"
+            class="flex items-center gap-1.5 text-caption text-forbes-dark cursor-pointer select-none relative"
           >
             <input
               type="checkbox"
@@ -30,6 +35,22 @@ function isActiveCategory(cat: string): boolean {
               @change="toggleBackground"
             >
             Show background
+            <span class="group relative">
+              <svg
+                class="inline w-4 h-4 ml-1 text-forbes-dark hover:text-forbes-red transition-colors cursor-pointer"
+                aria-label="Why is this toggle here?"
+                tabindex="0"
+              >
+                <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1" fill="none"/>
+                <text x="8" y="12" text-anchor="middle" font-size="10" fill="currentColor">?</text>
+              </svg>
+              <span
+                class="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity absolute left-full top-1/2 -translate-y-1/2 ml-2 bg-forbes-dark text-white text-[13px] rounded p-2 shadow-lg z-10 whitespace-nowrap"
+                style="min-width:200px;"
+              >
+                Was not sure if the background was supposed to be shown or not, so I added this toggle
+              </span>
+            </span>
           </label>
         </div>
         <div class="flex items-center gap-3 text-forbes-dark">
@@ -53,9 +74,9 @@ function isActiveCategory(cat: string): boolean {
     </div>
 
     <div class="home-content border-b border-forbes-dark">
-      <div class="py-5 text-center">
+      <div class="py-4 text-center">
         <NuxtLink to="/" class="inline-block group hover:opacity-80 transition-opacity">
-          <ForbesLogo :width="396" :height="99" />
+          <ForbesLogo :width="340" :height="85" />
         </NuxtLink>
       </div>
     </div>

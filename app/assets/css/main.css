@@ -110,6 +110,30 @@
     @apply max-w-[1320px] mx-auto px-4 sm:px-6;
   }
 
+  .article-column {
+    @apply max-w-[980px] mx-auto w-full;
+  }
+
+  .page-content-offset {
+    @apply pt-20;
+  }
+
+  .action-link {
+    @apply inline-flex items-center justify-end w-[116px] h-[22px] gap-[6px] shrink-0;
+  }
+
+  .action-link__label {
+    @apply text-[13px] leading-none text-forbes-dark;
+  }
+
+  .action-link__icon {
+    @apply inline-flex items-center justify-center w-[22px] h-[22px] rounded-full border border-forbes-dark text-forbes-dark transition-colors group-hover:border-forbes-red group-hover:text-forbes-red;
+  }
+
+  .action-link__arrow {
+    @apply w-[11px] h-[11px] transition-transform duration-300 ease-in-out group-hover:-rotate-[45deg];
+  }
+
   .meta-pill {
     @apply inline-flex items-center justify-center w-[120px] h-[37px] px-[10px] border border-forbes-dark rounded-lg text-caption font-semibold uppercase text-forbes-dark shrink-0;
   }

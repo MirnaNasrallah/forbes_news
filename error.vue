@@ -36,7 +36,7 @@ function goHome() {
   <div class="min-h-screen bg-forbes-bg text-forbes-dark">
     <TheHeader />
 
-    <main class="home-content py-12 md:py-16">
+    <main class="home-content page-content-offset pb-12 md:pb-16">
       <p class="category-label mb-3">{{ statusCode }}</p>
       <h1 class="text-h1 font-bold uppercase tracking-wide mb-5">{{ title }}</h1>
       <p class="text-body-md text-forbes-dark/75 max-w-[720px] mb-8">{{ message }}</p>

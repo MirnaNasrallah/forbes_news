@@ -6,7 +6,8 @@ const { showBackground } = useBackgroundToggle()
   <div>
     <TheHeader />
 
-    <div :class="showBackground ? 'home-content py-6 sm:py-8' : 'home-content py-8'">
+    <div :class="showBackground ? 'page-content-offset pb-6 sm:pb-8' : 'page-content-offset pb-8'">
+      <div class="home-content">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-5">
         <div
           v-for="index in 4"
@@ -37,7 +38,7 @@ const { showBackground } = useBackgroundToggle()
       <div class="mt-10 space-y-4">
         <div class="flex items-center justify-between pb-4 border-b border-forbes-dark">
           <SkeletonBox class="h-[43px] w-72" />
-          <SkeletonBox class="h-5 w-[106px]" />
+          <SkeletonBox class="h-[22px] w-[116px]" />
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-[628px_628px] gap-[30px]">
@@ -55,6 +56,7 @@ const { showBackground } = useBackgroundToggle()
             class="w-full max-w-[420px] h-[350px] rounded-[4px]"
           />
         </div>
+      </div>
       </div>
     </div>
   </div>

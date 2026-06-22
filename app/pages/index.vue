@@ -35,7 +35,7 @@ useSeoMeta({
   <div v-else-if="data">
     <TheHeader />
 
-    <div :class="showBackground ? 'pt-5 pb-6 sm:pt-6 sm:pb-8' : 'py-8'">
+    <div :class="showBackground ? 'page-content-offset pb-6 sm:pb-8' : 'page-content-offset pb-8'">
       <TickerStrip :articles="data.ticker" />
 
       <div class="home-content">

@@ -1,5 +1,5 @@
 <template>
-  <div class="home-content py-8">
+  <div class="home-content pb-8">
     <div class="mb-10">
       <SkeletonBox class="h-[43px] w-72 mb-4" />
       <div class="border-t border-forbes-dark" />

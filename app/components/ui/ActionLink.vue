@@ -15,12 +15,12 @@ withDefaults(
   <NuxtLink
     v-if="as === 'link' && to"
     :to="to"
-    class="group inline-flex items-center justify-end w-[106px] h-5 gap-[5px] shrink-0"
+    class="action-link group"
   >
-    <span class="text-caption text-forbes-dark">{{ label }}</span>
-    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full border border-forbes-dark text-forbes-dark transition-colors group-hover:border-forbes-red group-hover:text-forbes-red">
+    <span class="action-link__label">{{ label }}</span>
+    <span class="action-link__icon">
       <svg
-        class="w-2.5 h-2.5 transition-transform duration-300 ease-in-out group-hover:-rotate-[45deg]"
+        class="action-link__arrow"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -32,12 +32,12 @@ withDefaults(
 
   <span
     v-else
-    class="group inline-flex items-center justify-end w-[106px] h-5 gap-[5px] shrink-0"
+    class="action-link group"
   >
-    <span class="text-caption text-forbes-dark">{{ label }}</span>
-    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full border border-forbes-dark text-forbes-dark transition-colors group-hover:border-forbes-red group-hover:text-forbes-red">
+    <span class="action-link__label">{{ label }}</span>
+    <span class="action-link__icon">
       <svg
-        class="w-2.5 h-2.5 transition-transform duration-300 ease-in-out group-hover:-rotate-[45deg]"
+        class="action-link__arrow"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"

@@ -163,7 +163,7 @@ export const CATEGORY_IMAGE_COUNTS = Object.fromEntries(
 /** Homepage live hero image (Figma). */
 // TODO: return to the picsum after the website goes back up
 // 'https://picsum.photos/seed/home-hero/1320/580',
-export const HERO_LIVE_IMAGE = '/images/main.jpg'
+export const HERO_LIVE_IMAGE = '/images/main.png'
 
 export const THUMBNAIL_LOAD_TIMEOUT_MS = 3000
 

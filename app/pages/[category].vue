@@ -45,7 +45,7 @@ useSeoMeta({
 <template>
   <CategoryPageSkeleton v-if="pending" />
 
-  <div v-else-if="data" class="home-content py-8">
+  <div v-else-if="data" class="home-content pb-8">
     <div class="mb-10">
       <h1 class="section-heading pb-4">
         {{ CATEGORY_LABELS[data.category] }} News
