@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { ArticlePayload } from '#types/article'
-import { CATEGORY_LABELS } from '#types/article'
-import ArticlePageSkeleton from '~/components/skeleton/ArticlePageSkeleton.vue'
+import ArticlePageSkeleton from '~/app/components/ui/skeleton/ArticlePageSkeleton.vue'
 
 definePageMeta({ key: (route) => route.fullPath })
 
@@ -14,8 +13,17 @@ const { data, pending, error } = await useAsyncData<ArticlePayload>(
   { watch: [slug] },
 )
 
-if (error.value || !data.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Article not found' })
+if (error.value) {
+  const statusCode = error.value.statusCode ?? 500
+  throw createError({
+    statusCode,
+    statusMessage: statusCode === 404 ? 'Article not found' : 'Failed to load article',
+    fatal: true,
+  })
+}
+
+if (!data.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })
 }
 
 const { formatDateLong } = useFormatDate()
@@ -37,10 +45,11 @@ useSeoMeta({
           :src="data.article.thumbnail"
           :alt="data.article.title"
           :category="data.article.category"
-          img-class="w-full h-full object-cover"
+          img-class="w-full h-full object-contain"
           loading="eager"
           :width="1320"
           :height="578"
+          fit="contain"
         />
       </div>
     </div>

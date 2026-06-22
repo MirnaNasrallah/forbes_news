@@ -111,6 +111,8 @@ export const seedArticles: Article[] = [
     tags: ['sports', 'world-cup', 'egypt', 'new-zealand', 'group-g'],
     author: { name: 'Nina Volkov', slug: 'nina-volkov', title: 'Sports Reporter' },
     publishedAt: '2026-06-22T08:00:00Z',
+    // TODO: return to the picsum after the website goes back up
+    // thumbnail: 'https://picsum.photos/seed/home-hero/1320/580',
     thumbnail: HERO_LIVE_IMAGE,
     readingTime: 5,
     featured: true,
@@ -126,6 +128,8 @@ export const seedArticles: Article[] = [
     tags: ['social movements', 'activism', 'global affairs'],
     author: { name: 'Sarah Mitchell', slug: 'sarah-mitchell', title: 'Senior Correspondent' },
     publishedAt: '2024-09-08T09:00:00Z',
+    // TODO: return to the picsum after the website goes back up
+    // thumbnail: 'https://picsum.photos/seed/world-news-1/800/500',
     thumbnail: getCategoryThumbnailByIndex('world-news', 0),
     readingTime: 4,
     featured: true,
@@ -141,6 +145,8 @@ export const seedArticles: Article[] = [
     tags: ['AI', 'robotics', 'innovation', 'technology'],
     author: { name: 'Marcus Thompson', slug: 'marcus-thompson', title: 'Technology Editor' },
     publishedAt: '2024-09-10T07:30:00Z',
+    // TODO: return to the picsum after the website goes back up
+    // thumbnail: 'https://picsum.photos/seed/technology-1/800/500',
     thumbnail: getCategoryThumbnailByIndex('technology', 0),
     readingTime: 5,
     featured: true,
@@ -156,6 +162,8 @@ export const seedArticles: Article[] = [
     tags: ['finance', 'global economy', 'business strategy'],
     author: { name: 'David Chen', slug: 'david-chen', title: 'Economics Editor' },
     publishedAt: '2024-09-12T10:00:00Z',
+    // TODO: return to the picsum after the website goes back up
+    // thumbnail: 'https://picsum.photos/seed/business-1/800/500',
     thumbnail: getCategoryThumbnailByIndex('business', 0),
     readingTime: 5,
   },
@@ -170,6 +178,8 @@ export const seedArticles: Article[] = [
     tags: ['precision medicine', 'genomics', 'healthcare', 'innovation'],
     author: { name: 'Priya Nair', slug: 'priya-nair', title: 'Health Correspondent' },
     publishedAt: '2024-09-14T08:00:00Z',
+    // TODO: return to the picsum after the website goes back up
+    // thumbnail: 'https://picsum.photos/seed/health-1/800/500',
     thumbnail: getCategoryThumbnailByIndex('health', 0),
     readingTime: 5,
   },
@@ -184,6 +194,8 @@ export const seedArticles: Article[] = [
     tags: ['geopolitics', 'democracy', 'international relations'],
     author: { name: 'James Hartley', slug: 'james-hartley', title: 'Political Editor' },
     publishedAt: '2024-09-16T09:00:00Z',
+    // TODO: return to the picsum after the website goes back up
+    // thumbnail: 'https://picsum.photos/seed/politics-1/800/500',
     thumbnail: getCategoryThumbnailByIndex('politics', 0),
     readingTime: 4,
   },
@@ -198,6 +210,8 @@ export const seedArticles: Article[] = [
     tags: ['diversity', 'inclusion', 'sports culture'],
     author: { name: 'Nina Volkov', slug: 'nina-volkov', title: 'Sports Reporter' },
     publishedAt: '2024-09-18T08:00:00Z',
+    // TODO: return to the picsum after the website goes back up
+    // thumbnail: 'https://picsum.photos/seed/sports-5/800/500',
     thumbnail: getCategoryThumbnailByIndex('sports', 4),
     readingTime: 4,
   },
@@ -212,6 +226,8 @@ export const seedArticles: Article[] = [
     tags: ['podcasts', 'media', 'audio', 'storytelling'],
     author: { name: 'Leila Ahmadi', slug: 'leila-ahmadi', title: 'Business Reporter' },
     publishedAt: '2024-09-20T07:00:00Z',
+    // TODO: return to the picsum after the website goes back up
+    // thumbnail: 'https://picsum.photos/seed/podcast-1/800/500',
     thumbnail: getCategoryThumbnailByIndex('podcast', 0),
     readingTime: 4,
   },

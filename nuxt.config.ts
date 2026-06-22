@@ -1,11 +1,16 @@
-import { fileURLToPath } from 'node:url'
+import { defineNuxtConfig } from 'nuxt/config'
 
-const typesPath = fileURLToPath(new URL('./types', import.meta.url))
-const utilsPath = fileURLToPath(new URL('./utils', import.meta.url))
+const typesPath = new URL('./types', import.meta.url).pathname
+const utilsPath = new URL('./utils', import.meta.url).pathname
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  dir: {
+    app: 'app',
+    pages: 'app/pages',
+    layouts: 'app/layouts',
+  },
 
   modules: [
     '@nuxtjs/tailwindcss',
@@ -15,7 +20,16 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
   ],
 
-  css: ['~/assets/css/main.css'],
+  css: ['~/app/assets/css/main.css'],
+  components: [
+    {
+      path: '~/app/components',
+      pathPrefix: false,
+    },
+  ],
+  imports: {
+    dirs: ['app/composables'],
+  },
 
   alias: {
     '#types': typesPath,

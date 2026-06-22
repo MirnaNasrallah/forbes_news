@@ -35,7 +35,7 @@ const bottomArticles = computed(() => props.articles.slice(3, 6))
             </h3>
             <p class="mt-2 text-caption text-white/90">
               {{ CATEGORY_LABELS[featured.category] }}
-              <span class="mx-1">—</span>
+              <span class="mx-1">-</span>
               <time :datetime="featured.publishedAt">{{ formatDate(featured.publishedAt) }}</time>
             </p>
           </div>
@@ -63,7 +63,7 @@ const bottomArticles = computed(() => props.articles.slice(3, 6))
               </h4>
               <p class="text-caption text-forbes-dark/70">
                 {{ CATEGORY_LABELS[article.category] }}
-                <span class="mx-1">—</span>
+                <span class="mx-1">-</span>
                 <time :datetime="article.publishedAt">{{ formatDate(article.publishedAt) }}</time>
               </p>
             </div>

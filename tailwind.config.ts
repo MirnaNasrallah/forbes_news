@@ -8,9 +8,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        'forbes-bg-dark': 'rgb(var(--forbes-bg-dark) / <alpha-value>)',
         'forbes-red': '#E63946',
-        'forbes-dark': '#202124',
-        'forbes-bg': '#F4F4F9',
+        'forbes-dark': 'rgb(var(--forbes-dark) / <alpha-value>)',
+        'forbes-bg': 'rgb(var(--forbes-bg) / <alpha-value>)',
+        'forbes-surface': 'rgb(var(--forbes-surface) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],

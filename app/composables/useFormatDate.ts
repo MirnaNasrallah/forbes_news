@@ -16,16 +16,5 @@ export function useFormatDate() {
     })
   }
 
-  function formatDateTime(dateString: string): string {
-    return new Date(dateString).toLocaleString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-    })
-  }
-
-  return { formatDate, formatDateLong, formatDateTime }
+  return { formatDate, formatDateLong }
 }

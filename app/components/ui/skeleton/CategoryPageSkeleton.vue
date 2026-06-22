@@ -1,8 +1,3 @@
-<script setup lang="ts">
-import ArticleCardSkeleton from './ArticleCardSkeleton.vue'
-import SkeletonBox from './SkeletonBox.vue'
-</script>
-
 <template>
   <div class="home-content py-8">
     <div class="mb-10">

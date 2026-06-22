@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import SkeletonBox from './SkeletonBox.vue'
-</script>
-
 <template>
   <div>
     <div class="container pt-8">

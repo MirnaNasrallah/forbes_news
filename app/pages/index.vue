@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { HomepagePayload, SectionPreview } from '#types/article'
-import HomepageSkeleton from '~/components/skeleton/HomepageSkeleton.vue'
+import HomepageSkeleton from '~/app/components/ui/skeleton/HomepageSkeleton.vue'
 
 definePageMeta({ layout: 'home' })
 
@@ -11,7 +11,11 @@ const { data, pending, error } = await useAsyncData<HomepagePayload>(
 const { showBackground } = useBackgroundToggle()
 
 if (error.value) {
-  throw createError({ statusCode: 500, message: 'Failed to load homepage' })
+  throw createError({
+    statusCode: error.value.statusCode ?? 500,
+    statusMessage: 'Failed to load homepage',
+    fatal: true,
+  })
 }
 
 function getSection(category: SectionPreview['category']) {

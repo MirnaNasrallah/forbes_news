@@ -29,13 +29,13 @@ const dimensions = computed(() => ({
 }))
 
 function buildSources() {
-  const { width, height } = dimensions.value
-  return getThumbnailSourceChain(props.src, seed.value, props.category, width, height)
+  return getThumbnailSourceChain(props.src, seed.value, props.category)
 }
 
 const sources = ref<string[]>(buildSources())
 const sourceIndex = ref(0)
 const displaySrc = computed(() => sources.value[sourceIndex.value] ?? '')
+const useNativeImg = computed(() => isLocalThumbnail(displaySrc.value))
 
 let loadTimeoutId: ReturnType<typeof setTimeout> | null = null
 
@@ -100,14 +100,27 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <NuxtImg
+  <img
+    v-if="useNativeImg"
     :key="displaySrc"
     :src="displaySrc"
     :alt="alt"
     :class="imgClass"
     :loading="loading"
-    :width="width"
-    :height="height"
+    :width="dimensions.width"
+    :height="dimensions.height"
+    @load="onLoad"
+    @error="onError"
+  >
+  <NuxtImg
+    v-else
+    :key="displaySrc"
+    :src="displaySrc"
+    :alt="alt"
+    :class="imgClass"
+    :loading="loading"
+    :width="dimensions.width"
+    :height="dimensions.height"
     :fit="fit"
     @load="onLoad"
     @error="onError"

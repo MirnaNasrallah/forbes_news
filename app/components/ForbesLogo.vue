@@ -7,6 +7,7 @@ defineProps<{
 
 <template>
   <svg
+    class="forbes-logo"
     :width="width ?? 176"
     :height="height ?? 44"
     viewBox="0 0 176 44"

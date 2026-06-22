@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CategoryPayload } from '#types/article'
 import { CATEGORIES, CATEGORY_LABELS } from '#types/article'
-import CategoryPageSkeleton from '~/components/skeleton/CategoryPageSkeleton.vue'
+import CategoryPageSkeleton from '~/app/components/ui/skeleton/CategoryPageSkeleton.vue'
 
 definePageMeta({ key: (route) => route.fullPath })
 
@@ -9,7 +9,7 @@ const route = useRoute()
 const slug = computed(() => route.params.category as string)
 
 if (!(CATEGORIES as string[]).includes(slug.value)) {
-  throw createError({ statusCode: 404, statusMessage: 'Category not found' })
+  throw createError({ statusCode: 404, statusMessage: 'Category not found', fatal: true })
 }
 
 const { data, pending, error } = await useAsyncData<CategoryPayload>(
@@ -18,8 +18,17 @@ const { data, pending, error } = await useAsyncData<CategoryPayload>(
   { watch: [slug] },
 )
 
-if (error.value || !data.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Category not found' })
+if (error.value) {
+  const statusCode = error.value.statusCode ?? 500
+  throw createError({
+    statusCode,
+    statusMessage: statusCode === 404 ? 'Category not found' : 'Failed to load category',
+    fatal: true,
+  })
+}
+
+if (!data.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Category not found', fatal: true })
 }
 
 const allArticles = computed(() =>

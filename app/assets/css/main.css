@@ -3,6 +3,20 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --forbes-bg: 244 244 249;
+    --forbes-dark: 32 33 36;
+    --forbes-surface: 255 255 255;
+    --forbes-bg-dark: 17 18 20;
+  }
+
+  .dark {
+    --forbes-bg: 17 18 20;
+    --forbes-dark: 244 244 249;
+    --forbes-surface: 30 32 35;
+    --forbes-bg-dark: 8 9 10;
+  }
+
   @keyframes skeleton-shimmer {
     0% {
       background-position: -200% 0;
@@ -54,6 +68,10 @@
     @apply border-l-4 border-forbes-red pl-4 italic text-forbes-dark/70 my-6;
   }
 
+  .article-body a {
+    @apply text-forbes-red underline underline-offset-2;
+  }
+
   .card-image {
     @apply rounded-[4px] overflow-hidden;
   }
@@ -65,6 +83,11 @@
     background-position: top center;
   }
 
+  .dark .page-background {
+    @apply bg-forbes-bg-dark;
+    opacity: 0.72;
+  }
+
   .home-card {
     @apply max-w-[1724px] mx-4 sm:mx-6 lg:mx-auto mt-16 lg:mt-[118px] mb-10 pt-5 lg:pt-7 rounded-[10px] bg-forbes-bg overflow-hidden;
     box-shadow:
@@ -73,6 +96,14 @@
       0px -580px 250px 0px #0000001c,
       0px -1032px 250px 0px #00000008,
       0px -1612px 250px 0px #00000000;
+  }
+
+  .dark .home-card {
+    @apply bg-forbes-surface;
+    box-shadow:
+      0px -64px 142px 0px #00000066,
+      0px -258px 250px 0px #00000052,
+      0px -580px 250px 0px #00000040;
   }
 
   .home-content {
@@ -110,6 +141,23 @@
     );
     background-size: 200% 100%;
     animation: skeleton-shimmer 1.35s linear infinite;
+  }
+
+  .dark .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(244, 244, 249, 0.06) 0%,
+      rgba(244, 244, 249, 0.16) 50%,
+      rgba(244, 244, 249, 0.06) 100%
+    );
+  }
+
+  .forbes-logo path {
+    transition: fill 0.2s ease;
+  }
+
+  .dark .forbes-logo path {
+    fill: rgb(244 244 249);
   }
 }
 

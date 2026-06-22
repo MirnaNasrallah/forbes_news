@@ -16,15 +16,16 @@ function formatReadingTime(minutes: number): string {
 <template>
   <article class="group mb-10">
     <NuxtLink :to="`/articles/${article.slug}`" class="block">
-      <!-- Live article image — max 1320×580, served directly (no IPX crop) -->
       <div class="card-image relative w-full max-w-[1320px] mx-auto bg-forbes-dark/10">
-        <img
+        <ArticleThumbnail
           :src="article.thumbnail"
           :alt="article.title"
-          class="w-full h-auto max-h-[580px] object-contain mx-auto block"
+          :category="article.category"
+          img-class="w-full h-auto max-h-[580px] object-contain mx-auto block"
           loading="eager"
-          width="1320"
-          height="580"
+          :width="1320"
+          :height="580"
+          fit="contain"
         />
 
         <div class="absolute top-4 left-4 flex items-center gap-1.5 bg-forbes-red text-white text-caption font-semibold uppercase tracking-wide px-2.5 py-1">
@@ -33,7 +34,6 @@ function formatReadingTime(minutes: number): string {
         </div>
       </div>
 
-      <!-- Meta row: pills left, date + time right -->
       <div class="flex items-center justify-between mt-4 gap-4">
         <div class="flex items-center gap-[10px]">
           <span class="meta-pill">
@@ -46,17 +46,15 @@ function formatReadingTime(minutes: number): string {
 
         <p class="text-caption text-forbes-dark shrink-0">
           <time :datetime="article.publishedAt">{{ formatDate(article.publishedAt) }}</time>
-          <span class="mx-1.5">—</span>
+          <span class="mx-1.5">-</span>
           <span>{{ formatReadingTime(article.readingTime) }}</span>
         </p>
       </div>
 
-      <!-- Title -->
       <h2 class="live-title mt-4">
         {{ article.title }}
       </h2>
 
-      <!-- Read Article -->
       <div class="flex justify-end mt-4">
         <ActionLink label="Read Article" as="span" />
       </div>

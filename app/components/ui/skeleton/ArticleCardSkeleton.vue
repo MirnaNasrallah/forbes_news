@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import SkeletonBox from './SkeletonBox.vue'
-</script>
-
 <template>
   <article class="w-full max-w-[420px]">
     <div class="flex flex-col w-full min-h-[350px] gap-[14px]">

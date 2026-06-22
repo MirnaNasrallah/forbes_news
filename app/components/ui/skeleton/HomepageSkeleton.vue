@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import TheHeader from '../TheHeader.vue'
-import SkeletonBox from './SkeletonBox.vue'
-
 const { showBackground } = useBackgroundToggle()
 </script>
 

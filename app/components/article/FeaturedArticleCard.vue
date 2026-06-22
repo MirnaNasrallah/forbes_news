@@ -10,20 +10,21 @@ const { formatDate } = useFormatDate()
 
 <template>
   <article class="group relative overflow-hidden rounded-[8px] bg-forbes-dark/10 h-[520px] lg:h-[588px]">
-    <NuxtLink :to="`/articles/${article.slug}`" class="block h-full">
-      <ArticleThumbnail
-        :src="article.thumbnail"
-        :alt="article.title"
-        :category="article.category"
-        img-class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-        :width="800"
-        :height="588"
-      />
+    <NuxtLink :to="`/articles/${article.slug}`" class="block h-full relative">
+      <div class="absolute inset-0">
+        <ArticleThumbnail
+          :src="article.thumbnail"
+          :alt="article.title"
+          :category="article.category"
+          img-class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          :width="800"
+          :height="588"
+        />
+      </div>
 
-      <!-- White overlay panel -->
-      <div class="absolute top-5 left-5 bg-white rounded-[8px] p-5 flex flex-col justify-between w-[calc(100%-40px)] h-[calc(100%-40px)] lg:w-[408px] lg:h-[548px]">
+      <div class="absolute top-5 left-5 bg-forbes-surface border border-forbes-dark/10 rounded-[8px] p-5 flex flex-col justify-between w-[calc(100%-40px)] h-[calc(100%-40px)] lg:w-[408px] lg:h-[548px]">
         <div>
-          <span class="inline-block bg-forbes-dark text-white text-caption font-semibold px-3 py-1 rounded-full mb-4">
+          <span class="inline-block bg-forbes-dark text-forbes-bg text-caption font-semibold px-3 py-1 rounded-full mb-4">
             <time :datetime="article.publishedAt">{{ formatDate(article.publishedAt) }}</time>
           </span>
           <h3 class="text-h2 font-medium leading-[1.25] text-forbes-dark line-clamp-4">

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Article } from '#types/article'
-import { CATEGORY_LABELS } from '#types/article'
 
 defineProps<{
   article: Article

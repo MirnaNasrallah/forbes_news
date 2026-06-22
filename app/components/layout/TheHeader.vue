@@ -14,7 +14,6 @@ function isActiveCategory(cat: string): boolean {
 
 <template>
   <header class="bg-forbes-bg top-0 z-50">
-    <!-- Top bar -->
     <div class="home-content border-t border-b border-forbes-dark">
       <div class="flex items-center justify-between h-10">
         <div class="flex items-center gap-4">
@@ -22,7 +21,7 @@ function isActiveCategory(cat: string): boolean {
           <label
             v-if="route.path === '/'"
             class="flex items-center gap-1.5 text-caption text-forbes-dark cursor-pointer select-none"
-            title="Wasn't sure if the cover frame is required in this pare or all pages"
+            title="Toggle homepage cover frame"
           >
             <input
               type="checkbox"
@@ -34,6 +33,7 @@ function isActiveCategory(cat: string): boolean {
           </label>
         </div>
         <div class="flex items-center gap-3 text-forbes-dark">
+          <ColorModeToggle />
           <span class="text-caption hidden sm:inline">The Menu</span>
           <button
             aria-label="Open menu"
@@ -52,7 +52,6 @@ function isActiveCategory(cat: string): boolean {
       </div>
     </div>
 
-    <!-- Logo -->
     <div class="home-content border-b border-forbes-dark">
       <div class="py-5 text-center">
         <NuxtLink to="/" class="inline-block group hover:opacity-80 transition-opacity">
@@ -61,7 +60,6 @@ function isActiveCategory(cat: string): boolean {
       </div>
     </div>
 
-    <!-- Navigation -->
     <nav aria-label="Category navigation" class="home-content border-b border-forbes-dark">
       <div class="overflow-x-auto">
         <ul class="flex items-center justify-start lg:justify-center gap-0 h-11 whitespace-nowrap">

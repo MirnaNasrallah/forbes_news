@@ -5,8 +5,6 @@ defineProps<{
   article: Article
 }>()
 
-const { formatDate } = useFormatDate()
-
 function formatReadingTime(minutes: number): string {
   return `${minutes} Minutes`
 }
@@ -34,7 +32,7 @@ function formatReadingTime(minutes: number): string {
           {{ article.excerpt }}
         </p>
         <p class="text-caption text-forbes-dark/50">
-          {{ formatReadingTime(article.readingTime) }} — {{ article.author.name }}
+          {{ formatReadingTime(article.readingTime) }} - {{ article.author.name }}
         </p>
       </div>
     </NuxtLink>

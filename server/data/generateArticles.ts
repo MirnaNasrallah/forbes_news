@@ -427,6 +427,8 @@ export function generateArticles(seeds: Article[]): Article[] {
         tags,
         author,
         publishedAt: date,
+        // TODO: return to the picsum after the website goes back up
+        // thumbnail: `https://picsum.photos/seed/${category}-${imageIndex + 1}/800/500`,
         thumbnail: getCategoryThumbnailByIndex(category, imageIndex),
         readingTime,
       })
