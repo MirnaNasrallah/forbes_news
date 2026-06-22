@@ -37,7 +37,7 @@ const { formatDate } = useFormatDate()
 
         <p class="text-caption text-forbes-dark/60">
           <span>{{ article.author.name }}</span>
-          <span class="mx-1">-</span>
+          <span class="mx-1">—</span>
           <time :datetime="article.publishedAt">{{ formatDate(article.publishedAt) }}</time>
         </p>
       </div>

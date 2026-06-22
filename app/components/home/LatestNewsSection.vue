@@ -17,7 +17,7 @@ const bottomArticles = computed(() => props.articles.slice(3, 6))
   <section v-if="featured" class="mb-14">
     <SectionTitle title="Latest News" to="/world-news" />
 
-    <div class="grid grid-cols-1 lg:grid-cols-[628px_628px] gap-[30px]">
+    <div class="grid grid-cols-1 lg:grid-cols-[628px_628px] gap-[30px] pb-5">
       <RevealOnEnter :delay="0">
       <article class="group relative w-full h-[490px] rounded-[4px] overflow-hidden bg-forbes-dark/10">
         <NuxtLink :to="`/articles/${featured.slug}`" class="block h-full">
@@ -30,13 +30,13 @@ const bottomArticles = computed(() => props.articles.slice(3, 6))
             :height="490"
           />
 
-          <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/35 to-transparent">
-            <h3 class="text-[28px] leading-[1.2] font-medium text-white line-clamp-2">
+          <div class="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 via-black/35 to-transparent">
+            <h3 class="text-[22px] leading-[1.2] font-medium text-white line-clamp-2 underline underline-offset-4">
               {{ featured.title }}
             </h3>
-            <p class="mt-2 text-caption text-white/90">
+            <p class="mt-2 text-caption text-white/90 py-3">
               {{ CATEGORY_LABELS[featured.category] }}
-              <span class="mx-1">-</span>
+              <span class="mx-1">—</span>
               <time :datetime="featured.publishedAt">{{ formatDate(featured.publishedAt) }}</time>
             </p>
           </div>
@@ -66,7 +66,7 @@ const bottomArticles = computed(() => props.articles.slice(3, 6))
               </h4>
               <p class="text-caption text-forbes-dark/70">
                 {{ CATEGORY_LABELS[article.category] }}
-                <span class="mx-1">-</span>
+                <span class="mx-1">—</span>
                 <time :datetime="article.publishedAt">{{ formatDate(article.publishedAt) }}</time>
               </p>
             </div>
@@ -87,7 +87,7 @@ const bottomArticles = computed(() => props.articles.slice(3, 6))
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[14px] mt-[14px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[28px] mt-[14px]">
       <ArticleCard
         v-for="(article, index) in bottomArticles"
         :key="article.slug"

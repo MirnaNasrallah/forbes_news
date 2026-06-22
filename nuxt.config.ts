@@ -22,7 +22,7 @@ export default defineNuxtConfig({
         { property: 'og:site_name', content: 'Forbes Middle East' },
         { name: 'twitter:card', content: 'summary_large_image' },
       ],
-      link: [{ rel: 'icon', href: '/favicon.ico' }],
+      link: [{ rel: 'icon', href: '/images/favicon.ico' }],
     },
   },
 
@@ -33,6 +33,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    '@nuxt/eslint',
     '@nuxtjs/tailwindcss',
     '@nuxt/image',
     '@nuxtjs/color-mode',

@@ -1,7 +1,7 @@
 import type { Article } from '#types/article'
 import { getCategoryThumbnailByIndex, HERO_LIVE_IMAGE } from '#utils/thumbnail'
 
-const CULTURE_BODY = `
+const _CULTURE_BODY = `
 <p>Culture is not static; it is a living, breathing force that shapes and is shaped by the society in which it exists. Throughout history, cultural movements have emerged as powerful catalysts for change, challenging prevailing norms, reimagining artistic expression, and fundamentally altering how we understand ourselves and others.</p>
 
 <p>In examining the influence of cultural movements on contemporary society, we must first acknowledge the breadth of what constitutes culture itself. From the visual arts and cinema to music, literature, fashion, and digital media, culture permeates every aspect of human experience. When these spheres align around shared values or grievances, cultural movements are born—and their impact can be profound.</p>

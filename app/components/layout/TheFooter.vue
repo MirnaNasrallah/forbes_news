@@ -10,9 +10,9 @@ const socialLinks = [
 
 <template>
   <footer class="mt-8 bg-forbes-bg">
-    <ContentDivider />
+    <ContentDivider class="border-[4px]" />
 
-    <div class="home-content py-6">
+    <div class="home-content py-3">
       <NuxtLink to="/" class="inline-block hover:opacity-70 transition-opacity">
         <ForbesLogo :width="176" :height="44" />
       </NuxtLink>
@@ -60,6 +60,6 @@ const socialLinks = [
       </div>
     </div>
 
-    <ContentDivider />
+    <ContentDivider class="pb-4" />
   </footer>
 </template>

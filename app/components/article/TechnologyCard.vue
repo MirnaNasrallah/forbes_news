@@ -27,7 +27,7 @@ const { formatDate } = useFormatDate()
       <time class="block text-caption text-forbes-dark/60 mt-1" :datetime="article.publishedAt">
         {{ formatDate(article.publishedAt) }}
       </time>
-      <h3 class="text-body-sm font-semibold text-forbes-dark leading-snug mt-1 line-clamp-3">
+      <h3 class="text-[18px] text-forbes-dark leading-snug mt-1 line-clamp-3">
         {{ article.title }}
       </h3>
     </NuxtLink>

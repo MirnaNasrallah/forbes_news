@@ -30,14 +30,14 @@ function formatReadingTime(minutes: number): string {
       </div>
 
       <div class="w-[236px] h-[164px] min-w-0 flex flex-col justify-center gap-6">
-        <h3 class="text-body-md font-bold text-forbes-dark leading-snug line-clamp-2">
+        <h3 class="text-[18px] text-forbes-dark leading-snug line-clamp-2">
           {{ article.title }}
         </h3>
-        <p class="text-body-sm text-forbes-dark/60 line-clamp-2 min-h-[42px]">
+        <p class="text-[14px] text-forbes-dark/60 line-clamp-2 min-h-[42px]">
           {{ article.excerpt }}
         </p>
         <p class="text-caption text-forbes-dark/50">
-          {{ formatReadingTime(article.readingTime) }} - {{ article.author.name }}
+          {{ formatReadingTime(article.readingTime) }} — {{ article.author.name }}
         </p>
       </div>
     </NuxtLink>

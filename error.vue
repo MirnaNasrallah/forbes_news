@@ -20,7 +20,7 @@ const message = computed(() => {
   return props.error.statusMessage || props.error.message || 'Please try again in a few moments.'
 })
 
-if (process.server) {
+if (import.meta.server) {
   const event = useRequestEvent()
   if (event) {
     setResponseStatus(event, statusCode.value)

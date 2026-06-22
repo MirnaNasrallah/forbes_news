@@ -29,8 +29,8 @@ function formatReadingTime(minutes: number): string {
           fit="contain"
         />
 
-        <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-[4px] border border-forbes-dark bg-white dark:bg-forbes-surface/95 py-1.5 px-2 text-caption font-semibold uppercase tracking-wide text-forbes-dark shadow-sm">
-          <span class="h-1.5 w-1.5 rounded-[4px] bg-forbes-red" />
+        <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-[4px] bg-white dark:bg-forbes-surface/95 py-2.5 px-2 text-caption tracking-wide text-forbes-dark">
+          <span class="h-2 w-2 rounded-[4px] bg-forbes-red" />
           Live Updates
         </div>
       </div>
@@ -47,7 +47,7 @@ function formatReadingTime(minutes: number): string {
 
         <p class="text-caption text-forbes-dark shrink-0">
           <time :datetime="article.publishedAt">{{ formatDate(article.publishedAt) }}</time>
-          <span class="mx-1.5">-</span>
+          <span class="mx-1.5">—</span>
           <span>{{ formatReadingTime(article.readingTime) }}</span>
         </p>
       </div>

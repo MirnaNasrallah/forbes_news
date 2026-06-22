@@ -102,7 +102,7 @@ export function useArticleJsonLd(getArticle: () => {
               name: SITE_NAME,
               logo: {
                 '@type': 'ImageObject',
-                url: absoluteUrl('/favicon.ico', siteUrl),
+                url: absoluteUrl('/images/favicon.ico', siteUrl),
               },
             },
             mainEntityOfPage: absoluteUrl(`/articles/${article.slug}`, siteUrl),
@@ -134,7 +134,7 @@ export function useHomeJsonLd() {
           '@type': 'Organization',
           name: SITE_NAME,
           url: siteUrl,
-          logo: absoluteUrl('/favicon.ico', siteUrl),
+          logo: absoluteUrl('/images/favicon.ico', siteUrl),
         }),
       },
     ],

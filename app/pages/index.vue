@@ -52,13 +52,13 @@ useHomeJsonLd()
 
     <div :class="showBackground ? 'page-content-offset pb-6 sm:pb-8' : 'page-content-offset pb-8'">
       <div class="home-content">
+        
+      <RevealOnEnter :delay="60">
+        <TickerStrip :articles="data.ticker" />
+      </RevealOnEnter>
       <h1 class="sr-only">Forbes Middle East – Latest News</h1>
       <RevealOnEnter :delay="0">
         <HeroArticle :article="data.hero" />
-      </RevealOnEnter>
-
-      <RevealOnEnter :delay="60">
-        <TickerStrip :articles="data.ticker" />
       </RevealOnEnter>
 
       <RevealOnEnter :delay="120">
