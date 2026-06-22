@@ -247,5 +247,11 @@ Functional implementations were intentionally omitted because the design specifi
 
 Rather than making assumptions that could diverge from the intended requirements, only the visual components were implemented while keeping them ready for future integration.
 
+## Performance & SEO
+
+- **Image compression:** `npm run images:compress` (uses `sharp` via `scripts/compress-images.mjs`). Large PNGs may be converted to WebP; update paths in `utils/thumbnail.ts` when adding assets.
+- **Site URL:** set `NUXT_PUBLIC_SITE_URL` for canonical URLs, Open Graph, `sitemap.xml`, and `robots.txt` in production.
+- **Sitemap:** `/sitemap.xml` (categories + all article slugs).
+- **SEO composable:** `app/composables/usePageSeo.ts` — page meta, OG/Twitter, canonical, optional LCP preload, JSON-LD helpers.
 
 The goal was to create a maintainable assessment project that resembles production practices without introducing unnecessary complexity.

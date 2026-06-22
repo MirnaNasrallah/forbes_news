@@ -33,6 +33,12 @@
   body {
     @apply bg-forbes-bg text-forbes-dark;
   }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    @apply outline-none ring-2 ring-forbes-red ring-offset-2 ring-offset-forbes-bg;
+  }
 }
 
 @layer components {
@@ -78,9 +84,15 @@
 
   .page-background {
     @apply fixed inset-0 z-0 bg-forbes-bg bg-no-repeat pointer-events-none;
-    background-image: url('/images/hero-cover.png');
+    background-image: url('/images/hero-cover.webp');
     background-size: 100% 100%;
     background-position: top center;
+  }
+
+  @media (max-width: 768px) {
+    .page-background {
+      background-image: none;
+    }
   }
 
   .dark .page-background {

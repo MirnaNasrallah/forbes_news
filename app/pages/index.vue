@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { HomepagePayload, SectionPreview } from '#types/article'
+import { HERO_LIVE_IMAGE } from '#utils/thumbnail'
 import HomepageSkeleton from '~/app/components/ui/skeleton/HomepageSkeleton.vue'
 
 definePageMeta({ layout: 'home' })
@@ -22,11 +23,16 @@ function getSection(category: SectionPreview['category']) {
   return data.value?.sections.find((s) => s.category === category)
 }
 
-useSeoMeta({
-  title: 'Forbes Middle East – Business, Technology, World News',
+usePageSeo(() => ({
+  title: 'Business, Technology, World News',
   description:
     'Forbes Middle East delivers authoritative business, technology, culture, and world news coverage across the Middle East and beyond.',
-})
+  path: '/',
+  ogImage: HERO_LIVE_IMAGE,
+  preloadImage: HERO_LIVE_IMAGE,
+}))
+
+useHomeJsonLd()
 </script>
 
 <template>
@@ -39,6 +45,7 @@ useSeoMeta({
       <TickerStrip :articles="data.ticker" />
 
       <div class="home-content">
+      <h1 class="sr-only">Forbes Middle East – Latest News</h1>
       <HeroArticle :article="data.hero" />
 
       <LatestNewsSection :articles="data.latest" />

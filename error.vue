@@ -27,9 +27,18 @@ if (process.server) {
   }
 }
 
+const route = useRoute()
+
 function goHome() {
   clearError({ redirect: '/' })
 }
+
+usePageSeo(() => ({
+  title: isNotFound.value ? 'Page Not Found' : 'Something Went Wrong',
+  description: message.value,
+  path: route.path,
+  noindex: true,
+}))
 </script>
 
 <template>

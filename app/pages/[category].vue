@@ -35,11 +35,12 @@ const allArticles = computed(() =>
   data.value ? [data.value.featured, ...data.value.articles] : [],
 )
 
-useSeoMeta({
-  title: () => `${data.value ? CATEGORY_LABELS[data.value.category] : ''} News – Forbes Middle East`,
-  description: () =>
-    `Latest ${data.value ? CATEGORY_LABELS[data.value.category] : ''} news, analysis, and features from Forbes Middle East.`,
-})
+usePageSeo(() => ({
+  title: `${data.value ? CATEGORY_LABELS[data.value.category] : ''} News`,
+  description: `Latest ${data.value ? CATEGORY_LABELS[data.value.category] : ''} news, analysis, and features from Forbes Middle East.`,
+  path: `/${slug.value}`,
+  ogImage: data.value?.featured.thumbnail,
+}))
 </script>
 
 <template>

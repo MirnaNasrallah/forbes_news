@@ -23,8 +23,9 @@ function formatReadingTime(minutes: number): string {
           :category="article.category"
           img-class="w-full h-auto max-h-[580px] object-contain mx-auto block transition-transform duration-300 group-hover:scale-105"
           loading="eager"
-          :width="1320"
-          :height="580"
+          fetchpriority="high"
+          :width="640"
+          :height="282"
           fit="contain"
         />
 

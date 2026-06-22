@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "images:compress": "node scripts/compress-images.mjs"
   },
   "dependencies": {
     "@nuxt/fonts": "^0.14.0",
@@ -18,5 +19,8 @@
     "nuxt": "^3.17.5",
     "tailwindcss": "^3.4.19",
     "vue": "^3.5.35"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.2"
   }
 }

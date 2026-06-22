@@ -14,6 +14,7 @@ const props = withDefaults(
     width?: number
     height?: number
     loading?: 'lazy' | 'eager'
+    fetchpriority?: 'high' | 'low' | 'auto'
     imgClass?: string
     fit?: 'cover' | 'contain' | 'fill' | 'inside' | 'outside'
   }>(),
@@ -107,6 +108,7 @@ onUnmounted(() => {
     :alt="alt"
     :class="imgClass"
     :loading="loading"
+    :fetchpriority="fetchpriority"
     :width="dimensions.width"
     :height="dimensions.height"
     @load="onLoad"
@@ -119,6 +121,7 @@ onUnmounted(() => {
     :alt="alt"
     :class="imgClass"
     :loading="loading"
+    :fetchpriority="fetchpriority"
     :width="dimensions.width"
     :height="dimensions.height"
     :fit="fit"

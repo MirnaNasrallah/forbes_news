@@ -28,10 +28,18 @@ if (!data.value) {
 
 const { formatDateLong } = useFormatDate()
 
-useSeoMeta({
-  title: () => data.value?.article.title ?? 'Article',
-  description: () => data.value?.article.excerpt ?? '',
-})
+usePageSeo(() => ({
+  title: data.value?.article.title ?? 'Article',
+  description: data.value?.article.excerpt ?? '',
+  path: `/articles/${slug.value}`,
+  ogImage: data.value?.article.thumbnail,
+  ogType: 'article',
+  publishedTime: data.value?.article.publishedAt,
+  author: data.value?.article.author.name,
+  preloadImage: data.value?.article.thumbnail,
+}))
+
+useArticleJsonLd(() => data.value?.article)
 </script>
 
 <template>
@@ -46,6 +54,7 @@ useSeoMeta({
           :category="data.article.category"
           img-class="w-full h-full object-contain"
           loading="eager"
+          fetchpriority="high"
           :width="980"
           :height="653"
           fit="contain"

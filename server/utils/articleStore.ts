@@ -58,7 +58,7 @@ export function getHomepagePayload(): HomepagePayload {
     'world-news': 'social-movements-reshaping-world',
     technology: 'ai-robotics-latest-developments',
     health: 'tailoring-treatments-genetic-profiles',
-    sports: 'egypt-wins-first-match-in-world-cup',
+    sports: 'celebrating-diversity-sports',
   }
   const ticker = (['world-news', 'technology', 'health', 'sports'] as Category[]).map((cat) => {
     const slug = tickerSlugs[cat]
@@ -67,12 +67,12 @@ export function getHomepagePayload(): HomepagePayload {
   })
 
   const latestCandidates = [
-    findArticleByThumbnail('business', 'bus-1.png'),
-    findArticleByThumbnail('world-news', 'world-2.png'),
-    findArticleByThumbnail('sports', 'egy-v2-nl'),
-    findArticleByThumbnail('business', 'bus-2.png'),
-    findArticleByThumbnail('business', 'bus-3.png'),
-    findArticleByThumbnail('health', 'health-1.png'),
+    findArticleByThumbnail('business', 'bus-1.webp'),
+    findArticleByThumbnail('world-news', 'world-2.webp'),
+    findArticleByThumbnail('sports', 'egy-v2-nl.webp'),
+    findArticleByThumbnail('business', 'bus-2.webp'),
+    findArticleByThumbnail('business', 'bus-3.webp'),
+    findArticleByThumbnail('health', 'health-1.webp'),
   ].filter((article): article is Article => !!article && article.slug !== hero.slug)
 
   const latest =

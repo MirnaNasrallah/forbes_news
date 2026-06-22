@@ -18,6 +18,8 @@ defineProps<{
         :alt="article.title"
         :category="article.category"
         img-class="w-full h-full object-cover"
+        loading="lazy"
+        fetchpriority="low"
         :width="84"
         :height="84"
       />

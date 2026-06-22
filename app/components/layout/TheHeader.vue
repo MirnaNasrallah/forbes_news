@@ -37,7 +37,7 @@ function isActiveCategory(cat: string): boolean {
             Show background
             <span class="group relative">
               <svg
-                class="inline w-4 h-4 ml-1 text-forbes-dark hover:text-forbes-red transition-colors cursor-pointer"
+                class="inline w-4 h-4 ml-1 text-forbes-dark dark:text-forbes-light hover:text-forbes-red dark:hover:text-forbes-red transition-colors cursor-pointer"
                 aria-label="Why is this toggle here?"
                 tabindex="0"
               >
@@ -45,7 +45,7 @@ function isActiveCategory(cat: string): boolean {
                 <text x="8" y="12" text-anchor="middle" font-size="10" fill="currentColor">?</text>
               </svg>
               <span
-                class="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity absolute left-full top-1/2 -translate-y-1/2 ml-2 bg-forbes-dark text-white text-[13px] rounded p-2 shadow-lg z-10 whitespace-nowrap"
+                class="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity absolute left-full top-1/2 -translate-y-1/2 ml-2 bg-forbes-dark dark:bg-forbes-surface text-white dark:text-forbes-dark text-[13px] rounded p-2 shadow-lg z-10 whitespace-nowrap"
                 style="min-width:200px;"
               >
                 Was not sure if the background was supposed to be shown or not, so I added this toggle
