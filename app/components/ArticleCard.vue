@@ -17,13 +17,13 @@ const { formatDate } = useFormatDate()
     >
       <!-- Image: 420 × 260 -->
       <div class="card-image w-full h-[260px] bg-forbes-bg shrink-0">
-        <NuxtImg
+        <ArticleThumbnail
           :src="article.thumbnail"
           :alt="article.title"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          loading="lazy"
-          width="420"
-          height="260"
+          :category="article.category"
+          img-class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          :width="420"
+          :height="260"
         />
       </div>
 
@@ -33,7 +33,7 @@ const { formatDate } = useFormatDate()
           {{ CATEGORY_LABELS[article.category] }}
         </span>
 
-        <h3 class="card-title text-body-md font-semibold text-forbes-dark leading-snug group-hover:text-forbes-red transition-colors">
+        <h3 class="card-title text-body-md font-semibold text-forbes-dark leading-snug">
           {{ article.title }}
         </h3>
 

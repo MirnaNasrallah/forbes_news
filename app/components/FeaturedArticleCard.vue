@@ -9,27 +9,32 @@ const { formatDate } = useFormatDate()
 </script>
 
 <template>
-  <article class="group relative overflow-hidden card-image aspect-[4/3] bg-forbes-dark/10">
+  <article class="group relative overflow-hidden rounded-[8px] bg-forbes-dark/10 h-[520px] lg:h-[588px]">
     <NuxtLink :to="`/articles/${article.slug}`" class="block h-full">
-      <NuxtImg
+      <ArticleThumbnail
         :src="article.thumbnail"
         :alt="article.title"
-        class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-        loading="lazy"
+        :category="article.category"
+        img-class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+        :width="800"
+        :height="588"
       />
 
       <!-- White overlay panel -->
-      <div class="absolute inset-y-0 left-0 w-1/2 min-w-[240px] max-w-[360px] bg-white/95 p-5 flex flex-col justify-between">
+      <div class="absolute top-5 left-5 bg-white rounded-[8px] p-5 flex flex-col justify-between w-[calc(100%-40px)] h-[calc(100%-40px)] lg:w-[408px] lg:h-[548px]">
         <div>
           <span class="inline-block bg-forbes-dark text-white text-caption font-semibold px-3 py-1 rounded-full mb-4">
             <time :datetime="article.publishedAt">{{ formatDate(article.publishedAt) }}</time>
           </span>
-          <h3 class="text-h4 font-bold text-forbes-dark leading-snug group-hover:text-forbes-red transition-colors line-clamp-4">
+          <h3 class="text-h2 font-medium leading-[1.25] text-forbes-dark line-clamp-4">
             {{ article.title }}
           </h3>
         </div>
-        <p class="text-caption text-forbes-dark/60 mt-4">
-          by. {{ article.author.name }} / {{ article.author.title }}
+        <p class="text-caption text-forbes-dark/80 mt-4">
+          by.
+          <span class="underline underline-offset-2">{{ article.author.name }}</span>
+          /
+          <span class="underline underline-offset-2">{{ article.author.title }}</span>
         </p>
       </div>
     </NuxtLink>

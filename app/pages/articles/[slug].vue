@@ -17,8 +17,6 @@ if (error.value || !data.value) {
 
 const { formatDateLong } = useFormatDate()
 
-const heroImage = computed(() => data.value?.article.thumbnail ?? '')
-
 useSeoMeta({
   title: () => data.value?.article.title ?? 'Article',
   description: () => data.value?.article.excerpt ?? '',
@@ -32,13 +30,14 @@ useSeoMeta({
     <!-- Full-width hero image -->
     <div class="container pt-8">
       <div class="card-image w-full aspect-[16/7] bg-forbes-dark/10">
-        <NuxtImg
-          :src="heroImage"
+        <ArticleThumbnail
+          :src="data.article.thumbnail"
           :alt="data.article.title"
-          class="w-full h-full object-cover"
+          :category="data.article.category"
+          img-class="w-full h-full object-cover"
           loading="eager"
-          width="1320"
-          height="578"
+          :width="1320"
+          :height="578"
         />
       </div>
     </div>

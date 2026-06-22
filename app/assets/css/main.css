@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+  @keyframes skeleton-shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
   html {
     @apply antialiased font-sans;
   }
@@ -57,7 +66,7 @@
   }
 
   .home-card {
-    @apply max-w-[1724px] mx-4 sm:mx-6 lg:mx-auto mt-16 lg:mt-[118px] mb-10 rounded-[10px] bg-forbes-bg overflow-hidden;
+    @apply max-w-[1724px] mx-4 sm:mx-6 lg:mx-auto mt-16 lg:mt-[118px] mb-10 pt-5 lg:pt-7 rounded-[10px] bg-forbes-bg overflow-hidden;
     box-shadow:
       0px -64px 142px 0px #00000038,
       0px -258px 250px 0px #00000030,
@@ -90,6 +99,17 @@
     text-overflow: ellipsis;
     word-break: break-word;
     max-height: 2.7em;
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(32, 33, 36, 0.08) 0%,
+      rgba(32, 33, 36, 0.14) 50%,
+      rgba(32, 33, 36, 0.08) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
   }
 }
 

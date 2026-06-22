@@ -19,7 +19,11 @@ function isActiveCategory(cat: string): boolean {
       <div class="flex items-center justify-between h-10">
         <div class="flex items-center gap-4">
           <time class="text-caption text-forbes-dark">{{ today }}</time>
-          <label class="flex items-center gap-1.5 text-caption text-forbes-dark cursor-pointer select-none">
+          <label
+            v-if="route.path === '/'"
+            class="flex items-center gap-1.5 text-caption text-forbes-dark cursor-pointer select-none"
+            title="Wasn't sure if the cover frame is required in this pare or all pages"
+          >
             <input
               type="checkbox"
               class="accent-forbes-red"

@@ -13,13 +13,13 @@ defineProps<{
     class="flex items-center w-[268px] h-[84px] gap-[10px] group shrink-0"
   >
     <div class="card-image flex-shrink-0 w-[84px] h-[84px] bg-forbes-dark/5">
-      <NuxtImg
+      <ArticleThumbnail
         :src="article.thumbnail"
         :alt="article.title"
-        class="w-full h-full object-cover"
-        loading="lazy"
-        width="84"
-        height="84"
+        :category="article.category"
+        img-class="w-full h-full object-cover"
+        :width="84"
+        :height="84"
       />
     </div>
 
@@ -27,7 +27,7 @@ defineProps<{
       <p class="text-[14px] font-semibold leading-[14.4px] uppercase text-forbes-dark">
         {{ CATEGORY_LABELS[article.category] }}
       </p>
-      <p class="text-[14px] font-normal leading-[14.4px] text-forbes-dark line-clamp-2 group-hover:text-forbes-red transition-colors">
+      <p class="text-[14px] font-normal leading-[14.4px] text-forbes-dark line-clamp-2">
         {{ article.title }}
       </p>
     </div>

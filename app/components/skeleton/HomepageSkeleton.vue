@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import ContentDivider from '../ContentDivider.vue'
 import TheHeader from '../TheHeader.vue'
 import SkeletonBox from './SkeletonBox.vue'
+
+const { showBackground } = useBackgroundToggle()
 </script>
 
 <template>
   <div>
     <TheHeader />
 
-    <div class="home-content py-6 sm:py-8">
-      <ContentDivider />
+    <div :class="showBackground ? 'home-content py-6 sm:py-8' : 'home-content py-8'">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-5">
         <div
           v-for="index in 4"
@@ -24,7 +24,6 @@ import SkeletonBox from './SkeletonBox.vue'
           </div>
         </div>
       </div>
-      <ContentDivider />
 
       <div class="mt-8 space-y-4">
         <SkeletonBox class="w-full aspect-[16/7]" />

@@ -1,5 +1,6 @@
 import type { Article, Author, Category } from '#types/article'
 import { CATEGORIES } from '#types/article'
+import { getArticleThumbnail } from '#utils/thumbnail'
 
 // ─── Author pool ────────────────────────────────────────────────────────────
 
@@ -403,7 +404,7 @@ export function generateArticles(seeds: Article[]): Article[] {
         tags,
         author,
         publishedAt: date,
-        thumbnail: `https://picsum.photos/seed/${slug}/800/500`,
+        thumbnail: getArticleThumbnail(slug, category),
         readingTime,
       })
     }

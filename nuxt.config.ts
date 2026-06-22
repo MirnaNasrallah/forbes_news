@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url'
 
 const typesPath = fileURLToPath(new URL('./types', import.meta.url))
+const utilsPath = fileURLToPath(new URL('./utils', import.meta.url))
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -18,11 +19,13 @@ export default defineNuxtConfig({
 
   alias: {
     '#types': typesPath,
+    '#utils': utilsPath,
   },
 
   nitro: {
     alias: {
       '#types': typesPath,
+      '#utils': utilsPath,
     },
   },
 
@@ -33,7 +36,7 @@ export default defineNuxtConfig({
   },
 
   image: {
-    domains: ['picsum.photos'],
+    domains: ['picsum.photos', 'placehold.co'],
     quality: 80,
   },
 

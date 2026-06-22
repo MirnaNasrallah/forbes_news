@@ -13,11 +13,11 @@ const { formatDate } = useFormatDate()
   <article class="group">
     <NuxtLink :to="`/articles/${article.slug}`" class="flex gap-3 items-start">
       <div class="card-image flex-shrink-0 w-20 h-14 bg-forbes-dark/5">
-        <NuxtImg
+        <ArticleThumbnail
           :src="article.thumbnail"
           :alt="article.title"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          loading="lazy"
+          :category="article.category"
+          img-class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
 
@@ -25,7 +25,7 @@ const { formatDate } = useFormatDate()
         <span class="category-label">
           {{ CATEGORY_LABELS[article.category] }}
         </span>
-        <h4 class="text-body-sm font-semibold text-forbes-dark leading-snug group-hover:text-forbes-red transition-colors line-clamp-3">
+        <h4 class="text-body-sm font-semibold text-forbes-dark leading-snug line-clamp-3">
           {{ article.title }}
         </h4>
         <time class="text-caption text-forbes-dark/50" :datetime="article.publishedAt">

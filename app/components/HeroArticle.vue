@@ -18,13 +18,14 @@ function formatReadingTime(minutes: number): string {
     <NuxtLink :to="`/articles/${article.slug}`" class="block">
       <!-- Live article image (not the page background) -->
       <div class="card-image relative w-full aspect-[16/7] bg-forbes-dark/10">
-        <NuxtImg
+        <ArticleThumbnail
           :src="article.thumbnail"
           :alt="article.title"
-          class="w-full h-full object-cover"
+          :category="article.category"
+          img-class="w-full h-full object-cover"
           loading="eager"
-          width="1320"
-          height="578"
+          :width="1320"
+          :height="578"
         />
 
         <div class="absolute top-4 left-4 flex items-center gap-1.5 bg-forbes-red text-white text-caption font-semibold uppercase tracking-wide px-2.5 py-1">
@@ -52,16 +53,16 @@ function formatReadingTime(minutes: number): string {
       </div>
 
       <!-- Title -->
-      <h2 class="live-title mt-4 group-hover:text-forbes-red transition-colors">
+      <h2 class="live-title mt-4">
         {{ article.title }}
       </h2>
 
       <!-- Read Article -->
       <div class="flex justify-end mt-4">
-        <span class="inline-flex items-center gap-2 text-body-sm font-semibold text-forbes-dark group-hover:text-forbes-red transition-colors">
+        <span class="inline-flex items-center gap-2 text-body-sm font-semibold text-forbes-dark">
           Read Article
-          <span class="w-7 h-7 rounded-full border border-forbes-dark flex items-center justify-center group-hover:border-forbes-red transition-colors">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span class="w-7 h-7 rounded-full border border-forbes-dark text-forbes-dark flex items-center justify-center transition-colors group-hover:border-forbes-red group-hover:text-forbes-red">
+            <svg class="w-3.5 h-3.5 transition-transform duration-200 ease-out group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </span>

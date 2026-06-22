@@ -21,15 +21,15 @@ const secondary = computed(() => props.articles.slice(1, 5))
         <article class="group">
           <NuxtLink :to="`/articles/${featured.slug}`" class="block">
             <div class="card-image aspect-video bg-forbes-dark/5 mb-4">
-              <NuxtImg
+              <ArticleThumbnail
                 :src="featured.thumbnail"
                 :alt="featured.title"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
+                :category="featured.category"
+                img-class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </div>
             <span class="category-label">{{ CATEGORY_LABELS[featured.category] }}</span>
-            <h3 class="text-h5 font-semibold text-forbes-dark leading-snug mt-1 group-hover:text-forbes-red transition-colors line-clamp-3">
+            <h3 class="text-h5 font-semibold text-forbes-dark leading-snug mt-1 line-clamp-3">
               {{ featured.title }}
             </h3>
             <p class="text-body-sm text-forbes-dark/60 mt-2 line-clamp-2">{{ featured.excerpt }}</p>

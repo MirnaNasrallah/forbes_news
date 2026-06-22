@@ -8,6 +8,7 @@ const { data, pending, error } = await useAsyncData<HomepagePayload>(
   'homepage',
   () => $fetch('/api/homepage'),
 )
+const { showBackground } = useBackgroundToggle()
 
 if (error.value) {
   throw createError({ statusCode: 500, message: 'Failed to load homepage' })
@@ -30,7 +31,7 @@ useSeoMeta({
   <div v-else-if="data">
     <TheHeader />
 
-    <div class="py-6 sm:py-8">
+    <div :class="showBackground ? 'pt-5 pb-6 sm:pt-6 sm:pb-8' : 'py-8'">
       <TickerStrip :articles="data.ticker" />
 
       <div class="home-content">

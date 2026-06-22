@@ -1,4 +1,5 @@
 import type { Article } from '#types/article'
+import { getArticleThumbnail } from '#utils/thumbnail'
 
 const CULTURE_BODY = `
 <p>Culture is not static; it is a living, breathing force that shapes and is shaped by the society in which it exists. Throughout history, cultural movements have emerged as powerful catalysts for change, challenging prevailing norms, reimagining artistic expression, and fundamentally altering how we understand ourselves and others.</p>
@@ -96,7 +97,7 @@ export const seedArticles: Article[] = [
     tags: ['culture', 'society', 'movements', 'arts'],
     author: { name: 'Guy Hawkins', slug: 'guy-hawkins', title: 'Culture Editor' },
     publishedAt: '2024-09-09T08:00:00Z',
-    thumbnail: 'https://picsum.photos/seed/cultural-movements/1320/578',
+    thumbnail: getArticleThumbnail('cultural-movements', 'culture', 1320, 578),
     readingTime: 5,
     featured: true,
   },
@@ -111,7 +112,7 @@ export const seedArticles: Article[] = [
     tags: ['social movements', 'activism', 'global affairs'],
     author: { name: 'Sarah Mitchell', slug: 'sarah-mitchell', title: 'Senior Correspondent' },
     publishedAt: '2024-09-08T09:00:00Z',
-    thumbnail: 'https://picsum.photos/seed/social-movements/800/500',
+    thumbnail: getArticleThumbnail('social-movements', 'world-news'),
     readingTime: 4,
     featured: true,
   },
@@ -126,7 +127,7 @@ export const seedArticles: Article[] = [
     tags: ['AI', 'robotics', 'innovation', 'technology'],
     author: { name: 'Marcus Thompson', slug: 'marcus-thompson', title: 'Technology Editor' },
     publishedAt: '2024-09-10T07:30:00Z',
-    thumbnail: 'https://picsum.photos/seed/ai-robotics/800/500',
+    thumbnail: getArticleThumbnail('ai-robotics', 'technology'),
     readingTime: 5,
     featured: true,
   },
@@ -141,7 +142,7 @@ export const seedArticles: Article[] = [
     tags: ['finance', 'global economy', 'business strategy'],
     author: { name: 'David Chen', slug: 'david-chen', title: 'Economics Editor' },
     publishedAt: '2024-09-12T10:00:00Z',
-    thumbnail: 'https://picsum.photos/seed/global-finance/800/500',
+    thumbnail: getArticleThumbnail('global-finance', 'business'),
     readingTime: 5,
   },
   {
@@ -155,7 +156,7 @@ export const seedArticles: Article[] = [
     tags: ['precision medicine', 'genomics', 'healthcare', 'innovation'],
     author: { name: 'Priya Nair', slug: 'priya-nair', title: 'Health Correspondent' },
     publishedAt: '2024-09-14T08:00:00Z',
-    thumbnail: 'https://picsum.photos/seed/precision-medicine/800/500',
+    thumbnail: getArticleThumbnail('precision-medicine', 'health'),
     readingTime: 5,
   },
   {
@@ -169,7 +170,7 @@ export const seedArticles: Article[] = [
     tags: ['geopolitics', 'democracy', 'international relations'],
     author: { name: 'James Hartley', slug: 'james-hartley', title: 'Political Editor' },
     publishedAt: '2024-09-16T09:00:00Z',
-    thumbnail: 'https://picsum.photos/seed/global-affairs/800/500',
+    thumbnail: getArticleThumbnail('global-affairs', 'politics'),
     readingTime: 4,
   },
   {
@@ -183,7 +184,7 @@ export const seedArticles: Article[] = [
     tags: ['diversity', 'inclusion', 'sports culture'],
     author: { name: 'Nina Volkov', slug: 'nina-volkov', title: 'Sports Reporter' },
     publishedAt: '2024-09-18T08:00:00Z',
-    thumbnail: 'https://picsum.photos/seed/diversity-sports/800/500',
+    thumbnail: getArticleThumbnail('diversity-sports', 'sports'),
     readingTime: 4,
   },
   {
@@ -197,7 +198,7 @@ export const seedArticles: Article[] = [
     tags: ['podcasts', 'media', 'audio', 'storytelling'],
     author: { name: 'Leila Ahmadi', slug: 'leila-ahmadi', title: 'Business Reporter' },
     publishedAt: '2024-09-20T07:00:00Z',
-    thumbnail: 'https://picsum.photos/seed/podcast-media/800/500',
+    thumbnail: getArticleThumbnail('podcast-media', 'podcast'),
     readingTime: 4,
   },
 ]
