@@ -1,5 +1,5 @@
 import type { Article } from '#types/article'
-import { getArticleThumbnail } from '#utils/thumbnail'
+import { getCategoryThumbnailByIndex, HERO_LIVE_IMAGE } from '#utils/thumbnail'
 
 const CULTURE_BODY = `
 <p>Culture is not static; it is a living, breathing force that shapes and is shaped by the society in which it exists. Throughout history, cultural movements have emerged as powerful catalysts for change, challenging prevailing norms, reimagining artistic expression, and fundamentally altering how we understand ourselves and others.</p>
@@ -87,19 +87,18 @@ const PODCAST_BODY = `
 
 export const seedArticles: Article[] = [
   {
-    id: 'cultural-movements-contemporary-society',
-    slug: 'cultural-movements-contemporary-society',
-    title: 'A Deep Dive into the Influence of Cultural Movements on Contemporary Society',
+    id: 'egypt-wins-first-match-in-world-cup',
+    slug: 'egypt-wins-first-match-in-world-cup',
+    title: 'Egypt wins their first match in a world cup and leads group G with 4 points',
     excerpt:
-      'How grassroots cultural movements—from digital activism to artistic renaissances—are fundamentally reshaping institutions, identities, and the fabric of daily life across the globe.',
-    body: CULTURE_BODY,
-    category: 'culture',
-    tags: ['culture', 'society', 'movements', 'arts'],
-    author: { name: 'Guy Hawkins', slug: 'guy-hawkins', title: 'Culture Editor' },
+      'Egypt wins their first match in a world cup and leads group G with 4 points.',
+    body: SPORTS_BODY,
+    category: 'sports',
+    tags: ['sports', 'world-cup', 'egypt', 'group-g'],
+    author: { name: 'Nina Volkov', slug: 'nina-volkov', title: 'Sports Reporter' },
     publishedAt: '2024-09-09T08:00:00Z',
-    thumbnail: getArticleThumbnail('cultural-movements', 'culture', 1320, 578),
+    thumbnail: getCategoryThumbnailByIndex('sports', 0),
     readingTime: 5,
-    featured: true,
   },
   {
     id: 'social-movements-reshaping-world',
@@ -112,7 +111,7 @@ export const seedArticles: Article[] = [
     tags: ['social movements', 'activism', 'global affairs'],
     author: { name: 'Sarah Mitchell', slug: 'sarah-mitchell', title: 'Senior Correspondent' },
     publishedAt: '2024-09-08T09:00:00Z',
-    thumbnail: getArticleThumbnail('social-movements', 'world-news'),
+    thumbnail: getCategoryThumbnailByIndex('world-news', 0),
     readingTime: 4,
     featured: true,
   },
@@ -127,14 +126,14 @@ export const seedArticles: Article[] = [
     tags: ['AI', 'robotics', 'innovation', 'technology'],
     author: { name: 'Marcus Thompson', slug: 'marcus-thompson', title: 'Technology Editor' },
     publishedAt: '2024-09-10T07:30:00Z',
-    thumbnail: getArticleThumbnail('ai-robotics', 'technology'),
+    thumbnail: getCategoryThumbnailByIndex('technology', 0),
     readingTime: 5,
     featured: true,
   },
   {
     id: 'global-financial-landscape',
     slug: 'global-financial-landscape',
-    title: 'The Global Financial Landscape and Its Implications for All',
+    title: 'Riding the tide of innovation and inspiration',
     excerpt:
       'Supply chain reconfiguration, geopolitical fragmentation, and shifting corporate strategies are defining the new rules of international business. We examine what resilience looks like in an era of sustained disruption.',
     body: BUSINESS_BODY,
@@ -142,13 +141,13 @@ export const seedArticles: Article[] = [
     tags: ['finance', 'global economy', 'business strategy'],
     author: { name: 'David Chen', slug: 'david-chen', title: 'Economics Editor' },
     publishedAt: '2024-09-12T10:00:00Z',
-    thumbnail: getArticleThumbnail('global-finance', 'business'),
+    thumbnail: getCategoryThumbnailByIndex('business', 0),
     readingTime: 5,
   },
   {
     id: 'tailoring-treatments-genetic-profiles',
     slug: 'tailoring-treatments-genetic-profiles',
-    title: 'Analyzing the effects of global health policies',
+    title: 'Tailoring treatments to individual genetic profiles',
     excerpt:
       "Precision medicine is reshaping oncology and beyond, replacing statistical treatment averages with therapies calibrated to each patient's unique biology. What this means for healthcare access, equity, and the future of medicine.",
     body: HEALTH_BODY,
@@ -156,7 +155,7 @@ export const seedArticles: Article[] = [
     tags: ['precision medicine', 'genomics', 'healthcare', 'innovation'],
     author: { name: 'Priya Nair', slug: 'priya-nair', title: 'Health Correspondent' },
     publishedAt: '2024-09-14T08:00:00Z',
-    thumbnail: getArticleThumbnail('precision-medicine', 'health'),
+    thumbnail: getCategoryThumbnailByIndex('health', 0),
     readingTime: 5,
   },
   {
@@ -170,7 +169,7 @@ export const seedArticles: Article[] = [
     tags: ['geopolitics', 'democracy', 'international relations'],
     author: { name: 'James Hartley', slug: 'james-hartley', title: 'Political Editor' },
     publishedAt: '2024-09-16T09:00:00Z',
-    thumbnail: getArticleThumbnail('global-affairs', 'politics'),
+    thumbnail: getCategoryThumbnailByIndex('politics', 0),
     readingTime: 4,
   },
   {
@@ -184,7 +183,7 @@ export const seedArticles: Article[] = [
     tags: ['diversity', 'inclusion', 'sports culture'],
     author: { name: 'Nina Volkov', slug: 'nina-volkov', title: 'Sports Reporter' },
     publishedAt: '2024-09-18T08:00:00Z',
-    thumbnail: getArticleThumbnail('diversity-sports', 'sports'),
+    thumbnail: getCategoryThumbnailByIndex('sports', 4),
     readingTime: 4,
   },
   {
@@ -198,7 +197,7 @@ export const seedArticles: Article[] = [
     tags: ['podcasts', 'media', 'audio', 'storytelling'],
     author: { name: 'Leila Ahmadi', slug: 'leila-ahmadi', title: 'Business Reporter' },
     publishedAt: '2024-09-20T07:00:00Z',
-    thumbnail: getArticleThumbnail('podcast-media', 'podcast'),
+    thumbnail: getCategoryThumbnailByIndex('podcast', 0),
     readingTime: 4,
   },
 ]

@@ -1,6 +1,6 @@
 import type { Article, Author, Category } from '#types/article'
 import { CATEGORIES } from '#types/article'
-import { getArticleThumbnail } from '#utils/thumbnail'
+import { CATEGORY_IMAGE_COUNTS, getCategoryThumbnailByIndex } from '#utils/thumbnail'
 
 // ─── Author pool ────────────────────────────────────────────────────────────
 
@@ -37,7 +37,7 @@ type CategoryBank = {
 const WORD_BANKS: Record<Category, CategoryBank> = {
   'world-news': {
     titles: [
-      'The Changing Face of International Diplomacy',
+      'The effects of geopolitical shifts on global security',
       'How Global Refugee Crises Are Reshaping National Policy',
       'The UN Security Council and the Limits of Global Governance',
       'Economic Sanctions: Tools of Statecraft or Humanitarian Burden?',
@@ -113,8 +113,8 @@ const WORD_BANKS: Record<Category, CategoryBank> = {
 
   business: {
     titles: [
-      'Innovation Hubs Transforming Traditional Business Models',
-      'Challenges and Solutions in a Digital Age',
+      'Strategies for success in a competitive landscape',
+      'Innovation hubs are transforming traditional industries',
       'The Evolution of Business Models in a Digital Economy',
       'Understanding the Interconnectedness of Supply Chains',
       'How Corporate Culture Is Being Redefined Post-Pandemic',
@@ -382,9 +382,11 @@ export function generateArticles(seeds: Article[]): Article[] {
   CATEGORIES.forEach((category, categoryIndex) => {
     const bank = WORD_BANKS[category]
     const existingInCategory = seeds.filter((s) => s.category === category).length
-    const toGenerate = Math.max(5, 7 - existingInCategory)
+    const targetCount = CATEGORY_IMAGE_COUNTS[category]
+    const toGenerate = Math.max(0, targetCount - existingInCategory)
 
     for (let i = 0; i < toGenerate; i++) {
+      const imageIndex = existingInCategory + i
       const title = bank.titles[i % bank.titles.length]!
       const excerpt = bank.excerpts[i % bank.excerpts.length]!
       const tags = bank.tags[i % bank.tags.length]!
@@ -404,7 +406,7 @@ export function generateArticles(seeds: Article[]): Article[] {
         tags,
         author,
         publishedAt: date,
-        thumbnail: getArticleThumbnail(slug, category),
+        thumbnail: getCategoryThumbnailByIndex(category, imageIndex),
         readingTime,
       })
     }

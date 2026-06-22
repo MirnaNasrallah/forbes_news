@@ -3,13 +3,15 @@ import type { ArticlePayload } from '#types/article'
 import { CATEGORY_LABELS } from '#types/article'
 import ArticlePageSkeleton from '~/components/skeleton/ArticlePageSkeleton.vue'
 
+definePageMeta({ key: (route) => route.fullPath })
+
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 
 const { data, pending, error } = await useAsyncData<ArticlePayload>(
-  `article-${slug.value}`,
+  () => `article-${slug.value}`,
   () => $fetch(`/api/articles/${slug.value}`),
-  { lazy: true },
+  { watch: [slug] },
 )
 
 if (error.value || !data.value) {

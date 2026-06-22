@@ -3,6 +3,8 @@ import type { CategoryPayload } from '#types/article'
 import { CATEGORIES, CATEGORY_LABELS } from '#types/article'
 import CategoryPageSkeleton from '~/components/skeleton/CategoryPageSkeleton.vue'
 
+definePageMeta({ key: (route) => route.fullPath })
+
 const route = useRoute()
 const slug = computed(() => route.params.category as string)
 
@@ -11,9 +13,9 @@ if (!(CATEGORIES as string[]).includes(slug.value)) {
 }
 
 const { data, pending, error } = await useAsyncData<CategoryPayload>(
-  `category-${slug.value}`,
+  () => `category-${slug.value}`,
   () => $fetch(`/api/categories/${slug.value}`),
-  { lazy: true },
+  { watch: [slug] },
 )
 
 if (error.value || !data.value) {

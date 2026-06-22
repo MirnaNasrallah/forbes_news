@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { Category } from '#types/article'
-import { getArticleThumbnail, getThumbnailFallbacks } from '#utils/thumbnail'
+import {
+  THUMBNAIL_LOAD_TIMEOUT_MS,
+  getThumbnailSourceChain,
+  isLocalThumbnail,
+} from '#utils/thumbnail'
 
 const props = withDefaults(
   defineProps<{
@@ -25,38 +29,85 @@ const dimensions = computed(() => ({
 
 function buildSources() {
   const { width, height } = dimensions.value
-  const primary = props.src || getArticleThumbnail(seed.value, props.category, width, height)
-  const fallbacks = getThumbnailFallbacks(seed.value, props.category, width, height)
-  return [primary, ...fallbacks.filter((url) => url !== primary)]
+  return getThumbnailSourceChain(props.src, seed.value, props.category, width, height)
 }
 
 const sources = ref<string[]>(buildSources())
 const sourceIndex = ref(0)
 const displaySrc = computed(() => sources.value[sourceIndex.value] ?? '')
 
-watch(
-  () => [props.src, props.category, props.width, props.height] as const,
-  () => {
-    sources.value = buildSources()
-    sourceIndex.value = 0
-  },
-)
+let loadTimeoutId: ReturnType<typeof setTimeout> | null = null
 
-function onError() {
-  if (sourceIndex.value < sources.value.length - 1) {
-    sourceIndex.value += 1
+function clearLoadTimeout() {
+  if (loadTimeoutId) {
+    clearTimeout(loadTimeoutId)
+    loadTimeoutId = null
   }
 }
+
+function resetSources() {
+  sources.value = buildSources()
+  sourceIndex.value = 0
+  scheduleLoadTimeout()
+}
+
+function advanceSource() {
+  clearLoadTimeout()
+  if (sourceIndex.value < sources.value.length - 1) {
+    sourceIndex.value += 1
+    scheduleLoadTimeout()
+  }
+}
+
+function scheduleLoadTimeout() {
+  clearLoadTimeout()
+
+  const url = displaySrc.value
+  if (!url || isLocalThumbnail(url)) {
+    return
+  }
+
+  loadTimeoutId = setTimeout(() => {
+    advanceSource()
+  }, THUMBNAIL_LOAD_TIMEOUT_MS)
+}
+
+function onLoad() {
+  clearLoadTimeout()
+}
+
+function onError() {
+  advanceSource()
+}
+
+watch(
+  () => [props.src, props.category, props.width, props.height] as const,
+  resetSources,
+)
+
+watch(displaySrc, () => {
+  scheduleLoadTimeout()
+})
+
+onMounted(() => {
+  scheduleLoadTimeout()
+})
+
+onUnmounted(() => {
+  clearLoadTimeout()
+})
 </script>
 
 <template>
   <NuxtImg
+    :key="displaySrc"
     :src="displaySrc"
     :alt="alt"
     :class="imgClass"
     :loading="loading"
     :width="width"
     :height="height"
+    @load="onLoad"
     @error="onError"
   />
 </template>

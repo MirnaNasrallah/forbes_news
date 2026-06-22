@@ -1,49 +1,89 @@
 import type { Category } from '#types/article'
-import { CATEGORY_LABELS } from '#types/article'
+import { CATEGORIES } from '#types/article'
 
-/** Curated Unsplash photo IDs — editorial / news style per category. */
-const CATEGORY_PHOTOS: Record<Category, string[]> = {
+/** Public folder names (podcast category uses `podcasts` folder). */
+const CATEGORY_THUMBNAIL_DIRS: Record<Category, string> = {
+  'world-news': 'world-news',
+  politics: 'politics',
+  business: 'business',
+  technology: 'technology',
+  health: 'health',
+  sports: 'sports',
+  culture: 'culture',
+  podcast: 'podcasts',
+}
+
+/**
+ * Figma design assets in /public/images/thumbnails/{category}/.
+ * Article count per category page matches this list length.
+ */
+export const CATEGORY_THUMBNAILS: Record<Category, readonly string[]> = {
   'world-news': [
-    '1504711434969-e33886168f5c',
-    '1495020689067-958852a7765e',
-    '1586339949912-3e9457bef6d3',
+    '/images/thumbnails/world-news/world-1.png',
+    '/images/thumbnails/world-news/world-2.png',
+    '/images/thumbnails/world-news/world-3.png',
+    '/images/thumbnails/world-news/world-4.png',
+    '/images/thumbnails/world-news/world-5.png',
   ],
   politics: [
-    '1541873676-a181c7573a10',
-    '1529107386315-e1a2cc48a620',
-    '1560250097-0b93528c311a',
+    '/images/thumbnails/politics/pol-1.png',
+    '/images/thumbnails/politics/pol-2.png',
+    '/images/thumbnails/politics/pol-3.png',
+    '/images/thumbnails/politics/pol-4.png',
+    '/images/thumbnails/politics/pol-5.png',
   ],
   business: [
-    '1486406146926-c627a92ad1ab',
-    '1611976080085-c1b1fe091b8d',
-    '1454165804606-c3d57bc86b40',
+    '/images/thumbnails/business/bus-1.png',
+    '/images/thumbnails/business/bus-2.png',
+    '/images/thumbnails/business/bus-3.png',
+    '/images/thumbnails/business/bus-4.png',
+    '/images/thumbnails/business/bus-5.png',
   ],
   technology: [
-    '1518770660439-4636190af475',
-    '1531297484001-80022131f5a1',
-    '1550751827-4bd374c3f58b',
+    '/images/thumbnails/technology/tech-1.png',
+    '/images/thumbnails/technology/tech-2.png',
+    '/images/thumbnails/technology/tech-3.png',
+    '/images/thumbnails/technology/tech-4.png',
+    '/images/thumbnails/technology/tech-5.png',
+    '/images/thumbnails/technology/tech-6.png',
   ],
   health: [
-    '1576091160399-112ba8d25d1d',
-    '1631217868264-e5b90cc5f789',
-    '1579684385127-1ef15d508118',
+    '/images/thumbnails/health/health-1.png',
+    '/images/thumbnails/health/health-2.png',
+    '/images/thumbnails/health/health-3.png',
   ],
   sports: [
-    '1461896836934-ffe607ba8211',
-    '1574629810360-7efbbebb072f',
-    '1517649763962-0c62306601b7',
+    '/images/thumbnails/sports/42f0914b244750a8996e6a9f7e8aaeaa2939c9a3.png',
+    '/images/thumbnails/sports/5aa6b4094bc07534cd61f9a742cb6d9b9cd81b2b.png',
+    '/images/thumbnails/sports/b26f250a58325ad91e505a3a35867b848cf0d736.png',
+    '/images/thumbnails/sports/b682bb9d39f676b8ad3b28f85745ce8562cac12c.png',
+    '/images/thumbnails/sports/egy-v2-nl.webp',
   ],
   culture: [
-    '1531243269734-3525739266fa',
-    '1560174037-f81f34bbd2f8',
-    '1549880181-3a089cf5b1a8',
+    '/images/thumbnails/culture/cul-1.png',
+    '/images/thumbnails/culture/cul-2.png',
+    '/images/thumbnails/culture/cul-3.png',
+    '/images/thumbnails/culture/cul-4.png',
+    '/images/thumbnails/culture/cul-5.png',
   ],
   podcast: [
-    '1478737270248-4fd7fe40b07c',
-    '1590602847861-f95a9c4f6b3c',
-    '1589903308904-0d3ebf9f9490',
+    '/images/thumbnails/podcasts/pod-1.jpg',
+    '/images/thumbnails/podcasts/pod-2.png',
+    '/images/thumbnails/podcasts/pod-3.png',
+    '/images/thumbnails/podcasts/pod-4.png',
+    '/images/thumbnails/podcasts/pod-5.png',
+    '/images/thumbnails/podcasts/pod-6.png',
   ],
 }
+
+export const CATEGORY_IMAGE_COUNTS = Object.fromEntries(
+  CATEGORIES.map((category) => [category, CATEGORY_THUMBNAILS[category].length]),
+) as Record<Category, number>
+
+/** Homepage live hero image (Figma). */
+export const HERO_LIVE_IMAGE = '/images/main.jpg'
+
+export const THUMBNAIL_LOAD_TIMEOUT_MS = 3000
 
 function hashString(value: string): number {
   let hash = 0
@@ -54,49 +94,73 @@ function hashString(value: string): number {
   return Math.abs(hash)
 }
 
-function pickPhotoId(seed: string, category: Category, offset = 0): string {
-  const photos = CATEGORY_PHOTOS[category]
-  const index = (hashString(seed) + offset) % photos.length
-  return photos[index]!
+export function getCategoryThumbnailByIndex(category: Category, index: number): string {
+  const images = CATEGORY_THUMBNAILS[category]
+  return images[index % images.length]!
 }
 
-/** Unsplash CDN — primary thumbnail source (reliable editorial photos). */
-export function getUnsplashThumbnail(
-  seed: string,
-  category: Category,
-  width: number,
-  height: number,
-  offset = 0,
-): string {
-  const photoId = pickPhotoId(seed, category, offset)
-  return `https://images.unsplash.com/photo-${photoId}?w=${width}&h=${height}&fit=crop&q=80&auto=format`
+export function getCategoryThumbnailBySeed(seed: string, category: Category, offset = 0): string {
+  const images = CATEGORY_THUMBNAILS[category]
+  const index = (hashString(seed) + offset) % images.length
+  return images[index]!
 }
 
-/** Text placeholder when remote photos fail to load. */
-export function getPlaceholderThumbnail(category: Category, width: number, height: number): string {
-  const label = CATEGORY_LABELS[category] ?? 'News'
-  return `https://dummyimage.com/${width}x${height}/202124/F4F4F9&text=${encodeURIComponent(label)}`
-}
+// ─── Original remote placeholder plan (kept for reference) ───────────────────
+// Most lorem/picsum-style CDNs were unreliable, so we ship Figma assets locally.
+//
+// function getPicsumThumbnail(seed: string, width: number, height: number): string {
+//   return `https://picsum.photos/seed/${encodeURIComponent(seed)}/${width}/${height}`
+// }
+//
+// function getUnsplashThumbnail(
+//   seed: string,
+//   category: Category,
+//   width: number,
+//   height: number,
+//   offset = 0,
+// ): string {
+//   return `https://images.unsplash.com/photo-...?w=${width}&h=${height}&fit=crop&q=80&auto=format`
+// }
+//
+// function getPlaceholderThumbnail(category: Category, width: number, height: number): string {
+//   return `https://placehold.co/${width}x${height}/202124/F4F4F9?text=${encodeURIComponent(label)}`
+// }
 
-/** Default article thumbnail URL. */
+/** Default article thumbnail — local Figma asset for category/index. */
 export function getArticleThumbnail(
   seed: string,
   category: Category,
-  width = 800,
-  height = 500,
+  _width = 800,
+  _height = 500,
+  offset = 0,
 ): string {
-  return getUnsplashThumbnail(seed, category, width, height)
+  return getCategoryThumbnailBySeed(seed, category, offset)
+  // return getUnsplashThumbnail(seed, category, width, height)
 }
 
-/** Ordered fallbacks for client-side image error handling. */
-export function getThumbnailFallbacks(
+/** Ordered fallback chain for ArticleThumbnail (local assets only). */
+export function getThumbnailSourceChain(
+  src: string,
   seed: string,
   category: Category,
-  width: number,
-  height: number,
+  _width: number,
+  _height: number,
 ): string[] {
-  return [
-    getUnsplashThumbnail(seed, category, width, height, 1),
-    getPlaceholderThumbnail(category, width, height),
-  ]
+  const images = [...CATEGORY_THUMBNAILS[category]]
+  const primary = src || getCategoryThumbnailBySeed(seed, category)
+  const startIndex = images.indexOf(primary)
+
+  if (startIndex === -1) {
+    return [primary, ...images.filter((image) => image !== primary)]
+  }
+
+  return [...new Set([...images.slice(startIndex), ...images.slice(0, startIndex)])]
+}
+
+export function isLocalThumbnail(url: string): boolean {
+  return url.startsWith('/images/')
+}
+
+export function getThumbnailDir(category: Category): string {
+  return CATEGORY_THUMBNAIL_DIRS[category]
 }
